@@ -1,1 +1,71 @@
-<p>car works!</p>
+<!-- <p>car works!</p> -->
+ <!-- <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css"> -->
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+<!-- <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>  -->
+<!------ Include the above in your HEAD tag ---------->
+
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-3"></div>
+        <div class="col-md-6">
+            <form [formGroup]="userForm" >
+                <fieldset>
+                    <legend class="text-center">Valid information is required to register. <span class="req"></span></legend>
+
+                    <div class="form-group">
+                        <label for="Brand"><span class="req">* </span> Brand: </label>
+                        <input required type="text" formControlName="brand"  id="brand"
+                            class="form-control " maxlength="28" placeholder="Enter car brand" />
+                    </div>
+
+                    <div class="form-group">
+                        <label for="Name"><span class="req">* </span> Model: </label>
+                        <input required type="text" formControlName="model"   id="model"
+                            class="form-control phone" maxlength="28" placeholder="Enter model name" />
+                    </div>
+
+                    <div class="form-group">
+                        <label for="Name"><span class="req">* </span> Color:  </label>
+                        <input required type="text" formControlName="color" id="color"
+                            class="form-control phone" maxlength="28" placeholder="Enter car color" />
+                    </div>
+
+                    <div class="form-group">
+                        <label for="Name"><span class="req">* </span> Variant:  </label>
+                        <input required type="text" formControlName="variant"  id="variant"
+                            class="form-control phone" maxlength="28" placeholder="Enter variant name" />
+                    </div>
+
+
+                    <div class="form-group">
+                        <label for="lastname"><span class="req">* </span> Price : </label>
+                        <input class="form-control" formControlName="price" type="text"   id="price"
+                            placeholder="Total price" required />
+                        <div id="errLast"></div>
+                    </div>
+
+
+                    <div class="form-group">
+                        <label for="lastname"><span class="req">* </span> Year : </label>
+                        <input class="form-control" type="text" formControlName="year"  id="year"
+                            placeholder="Year of registration" required />
+                        <div id="errLast"></div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="lastname"><span class="req">* </span>State : </label>
+                        <input class="form-control" type="text" formControlName="state"  id="state"
+                            placeholder="Registration state" required />
+                        <div id="errLast"></div>
+                    </div> 
+
+                    <!-- <button type="submit" [disabled]="!profileForm.valid">Submit</button> -->
+                    <button class="btn btn-lg btn-primary btn-block mb-2" type="submit" >Register Car</button>
+                </fieldset>
+            </form>
+            
+        </div>
+
+    </div>
+</div>
