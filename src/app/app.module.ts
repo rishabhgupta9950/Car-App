@@ -14,8 +14,12 @@ import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
 import { HomeComponent } from './home/home.component';
 import { RouterModule } from '@angular/router';
+
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CarDataComponent } from './car-data/car-data.component';
+
+import { OrderDetailsComponent } from './order-details/order-details.component';
+
 
 @NgModule({
   declarations: [
@@ -30,8 +34,12 @@ import { CarDataComponent } from './car-data/car-data.component';
     HeaderComponent,
     FooterComponent,
     HomeComponent,
+
     CarDataComponent,
    
+
+    OrderDetailsComponent
+
   ],
   imports: [
     BrowserModule,
@@ -42,7 +50,15 @@ import { CarDataComponent } from './car-data/car-data.component';
       {path:'home', component: HomeComponent},
       {path:'appointment', component: AppointmentComponent},
       {path:'products', component: CarComponent},
+
       {path:'products1', component: CarDataComponent},
+
+      {path:'login', component: LoginComponent},
+      {path:'order', component: OrderComponent},
+      {path:'order-details', component: OrderDetailsComponent},git
+      {path:'register', component: LoginComponent},
+      {path:'payment', component: PaymentComponent},
+
       {path: '', redirectTo: 'home', pathMatch: 'full'},
       {path: '**', redirectTo: 'home', pathMatch: 'full'}
     ])
