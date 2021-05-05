@@ -14,6 +14,7 @@ import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
 import { HomeComponent } from './home/home.component';
 import { RouterModule } from '@angular/router';
+import { OrderDetailsComponent } from './order-details/order-details.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import { RouterModule } from '@angular/router';
     LoginComponent,
     HeaderComponent,
     FooterComponent,
-    HomeComponent
+    HomeComponent,
+    OrderDetailsComponent
   ],
   imports: [
     BrowserModule,
@@ -37,7 +39,10 @@ import { RouterModule } from '@angular/router';
       {path:'appointment', component: AppointmentComponent},
       {path:'products', component: CarComponent},
       {path:'login', component: LoginComponent},
+      {path:'order', component: OrderComponent},
+      {path:'order-details', component: OrderDetailsComponent},
       {path:'register', component: LoginComponent},
+      {path:'payment', component: PaymentComponent},
       {path: '', redirectTo: 'home', pathMatch: 'full'},
       {path: '**', redirectTo: 'home', pathMatch: 'full'}
     ])
