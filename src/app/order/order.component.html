@@ -1,1 +1,136 @@
-<p>order works!</p>
+<div class="row">
+  <div class="col-5">
+    <div class="card my-5 ml-5 p-3 align-items-left">
+      <div class="card-top my-3 ml-3 text-primary">
+        <h3>Manage your Orders</h3>
+      </div>
+        
+      <button class="btn btn-light container text-secondary shadow mb-3 bg-white rounded pt-3 pl-3 pb-2 list-btn" name="placeTab" (click)="click(1)"><h5>Book Order</h5></button>
+      <button class="btn btn-light container text-secondary shadow mb-3 bg-white rounded pt-3 pl-3 pb-2 list-btn" name="changeTab" (click)="click(2)"><h5>Modify Orders</h5></button>
+      <!-- <div class="dropdown">
+        <button class="btn btn-light container text-secondary shadow mb-3 bg-white rounded pt-3 pl-3 pb-2 list-btn" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <h5>Search Orders</h5>
+          <span class = "caret"></span>
+        </button>
+        <ul class="dropdown-menu">
+          <li><button class="btn btn-light container text-secondary shadow mb-3 bg-white rounded pt-3 pl-3 pb-2 list-btn" name="browseTab" (click)="click(3)"><h5>All Orders</h5></button></li>
+          <li><button class="btn btn-light container text-secondary shadow mb-3 bg-white rounded pt-3 pl-3 pb-2 list-btn" name="browseTab" (click)="click(4)"><h5>By Order ID</h5></button></li>
+          <li><button class="btn btn-light container text-secondary shadow mb-3 bg-white rounded pt-3 pl-3 pb-2 list-btn" name="browseTab" (click)="click(5)"><h5>By Billing Date</h5></button></li>
+        </ul>
+      </div> -->
+      <button class="btn btn-light container text-secondary shadow mb-3 bg-white rounded pt-3 pl-3 pb-2 list-btn" name="searchAllTab" (click)="click(3)"><h5>Browse All Orders</h5></button>
+      <button class="btn btn-light container text-secondary shadow mb-3 bg-white rounded pt-3 pl-3 pb-2 list-btn" name="searchByIdTab" (click)="click(4)"><h5>Browse By Order ID</h5></button>
+      <button class="btn btn-light container text-secondary shadow mb-3 bg-white rounded pt-3 pl-3 pb-2 list-btn" name="searchByBillTab" (click)="click(5)"><h5>Browse By Billing Date</h5></button>
+      <button class="btn btn-light container text-secondary shadow mb-3 bg-white rounded pt-3 pl-3 pb-2 list-btn" name="cancelTab" (click)="click(6)"><h5>Cancel Order</h5></button>
+      <button class="btn btn-light container text-secondary shadow mb-3 bg-white rounded pt-3 pl-3 pb-2 list-btn" name="billTab" (click)="click(7)"><h5>Generate Bill</h5></button>    
+
+    </div>
+  </div>
+
+  <div class="col-7" [ngSwitch]="openForm">
+    <div *ngSwitchCase='1'>
+      <div class="card my-5 mr-5 p-3 align-items-left" name="placeOrder">
+        <div class="card-top my-3 mr-3 text-primary">
+          <h4 id="heading">Book Order</h4>
+        </div>
+        <div class="card-body">
+          <form>
+            <div class="form-group">
+              <label for="orderId" class="mx-2">Order ID</label>
+              <input type="number" class="form-control" placeholder="Enter Order ID" required/>
+            </div>
+            <div class="form-group">
+              <label for="billDate" class="mx-2">Billing Date</label>
+              <input type="date" class="form-control" required/>
+            </div>
+            <div class="form-group">
+              <label for="userId" class="mx-2">User ID</label>
+              <input type="number" class="form-control" placeholder="Enter User ID" required/>
+            </div>
+            <div class="form-group">
+              <label for="carId" class="mx-2">Car ID</label>
+              <input type="number" class="form-control" placeholder="Enter Car ID" required/>
+            </div>
+            <div class="form-group">
+              <button class="btn btn-primary mt-3 shadow float-right">Place Order</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <div *ngSwitchCase='2'>
+      <div class="card my-5 mr-5 p-3 align-items-left">
+        <div class="card-top my-3 mr-3 text-primary">
+          <h4 id="heading">Modify Orders</h4>
+        </div>
+        <div class="card-body">
+          <form>
+            <div class="form-group">
+              <label for="orderId" class="mx-2">Order ID</label>
+              <input type="number" class="form-control" placeholder="Enter Order ID" required/>
+            </div>
+            <div class="form-group">
+              <label for="billDate" class="mx-2">Billing Date</label>
+              <input type="date" class="form-control" required/>
+            </div>
+            <div class="form-group">
+              <label for="userId" class="mx-2">User ID</label>
+              <input type="number" class="form-control" placeholder="Enter User ID" required/>
+            </div>
+            <div class="form-group">
+              <label for="carId" class="mx-2">Car ID</label>
+              <input type="number" class="form-control" placeholder="Enter Car ID" required/>
+            </div>
+            <div class="form-group">
+              <button class="btn btn-primary mt-3 shadow float-right" >Place Order</button>
+            </div>
+          </form>
+        </div>
+      </div>
+      </div>
+
+      <div *ngSwitchCase='3'>
+        
+      </div>
+
+      <div *ngSwitchCase='4'>
+        
+      </div>
+
+      <div *ngSwitchCase='5'>
+        
+      </div>
+
+      <div *ngSwitchCase='6'>
+        <div class="card my-5 mr-5 p-3">
+          <div class="card-top my-3 mr-3 text-primary">
+            <h4 id="heading">Cancel Order</h4>
+          </div>
+          <div class="form-group">
+            <label for="orderId" class="mx-2">Order ID</label>
+            <input type="number" class="form-control" placeholder="Enter Order ID" required/>
+          </div>
+          <div class="form-group">
+            <button class="btn btn-primary mt-3 shadow float-right" >Cancel Order</button>
+          </div>
+        </div>
+      </div>
+
+      <div *ngSwitchCase='7'>
+        <div class="card my-5 mr-5 p-3">
+          <div class="card-top my-3 mr-3 text-primary">
+            <h4 id="heading">Billing Section</h4>
+          </div>
+          <div class="form-group">
+            <label for="orderId" class="mx-2">Order ID</label>
+            <input type="number" class="form-control" placeholder="Enter Order ID" required/>
+          </div>
+          <div class="form-group">
+            <button class="btn btn-primary mt-3 shadow float-right" >Generate Bill</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
