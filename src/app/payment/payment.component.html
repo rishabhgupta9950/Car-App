@@ -1,1 +1,31 @@
-<p>payment works!</p>
+<div class="card">
+    <div class="card-top border-bottom text-center">
+        <a routerLink='/products'> Back to shop</a> <span id="logo">DemoPay Gateway</span>
+    </div>
+    <div class="card-body">
+        <div class="row my-4 py-4">
+            <div class="col-md-2"></div>
+            <div class="col-md-8">
+                <div class="left border">
+                    <div class="row"> <span class="header">Payment</span>
+                        <div class="icons"> <img src="https://img.icons8.com/color/48/000000/visa.png" />
+                            <img src="https://img.icons8.com/color/48/000000/mastercard-logo.png" />
+                            <img src="https://img.icons8.com/color/48/000000/maestro.png" />
+                        </div>
+                    </div>
+                    <form [formGroup]="paymentForm" (ngSubmit)="onSubmit(paymentForm)">
+                        <span>Cardholder's name:</span> <input formControlName="name" placeholder="Linda Williams">
+                        <span>Card Number:</span> <input type="number" formControlName="cardNo"
+                            placeholder="0125 6780 4567 9909">
+                        <div class="row">
+                            <div class="col-4"><span>Expiry date:</span> <input placeholder="YY/MM"> </div>
+                            <div class="col-4"><span>CVV:</span> <input formControlName="cvv" type="password" id="cvv">
+                            </div>
+                        </div>
+                        <button class="btn" [disabled]="paymentForm.invalid">Make Payment</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
