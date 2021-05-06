@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http'
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -16,6 +17,7 @@ import { FooterComponent } from './footer/footer.component';
 import { HomeComponent } from './home/home.component';
 import { RouterModule } from '@angular/router';
 import { OrderDetailsComponent } from './order-details/order-details.component';
+import { from } from 'rxjs';
 
 @NgModule({
   declarations: [
@@ -38,6 +40,7 @@ import { OrderDetailsComponent } from './order-details/order-details.component';
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
+    HttpClientModule,
     RouterModule.forRoot([
       {path:'home', component: HomeComponent},
       {path:'appointment', component: AppointmentComponent},
