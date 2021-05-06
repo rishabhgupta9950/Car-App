@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ICar } from '../models/car';
 
 @Component({
   selector: 'app-car-data',
@@ -9,7 +10,7 @@ export class CarDataComponent implements OnInit {
 
   constructor() { }
 
-  cars = [
+  cars: ICar[] = [
     {
       "id": 190,
       "brand": "Mercedes",
