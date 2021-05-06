@@ -6,7 +6,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { CustomerComponent } from './customer/customer.component';
 import { AdminComponent } from './admin/admin.component';
-import { CarComponent } from './car/car.component';
+import {CarComponent} from './car/car.component'
 import { AppointmentComponent } from './appointment/appointment.component';
 import { PaymentComponent } from './payment/payment.component';
 import { OrderComponent } from './order/order.component';
@@ -15,7 +15,14 @@ import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
 import { HomeComponent } from './home/home.component';
 import { RouterModule } from '@angular/router';
+
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { CarDataComponent } from './car-data/car-data.component';
+
 import { OrderDetailsComponent } from './order-details/order-details.component';
+
+import { HttpClientModule } from '@angular/common/http';
+
 
 @NgModule({
   declarations: [
@@ -30,23 +37,32 @@ import { OrderDetailsComponent } from './order-details/order-details.component';
     HeaderComponent,
     FooterComponent,
     HomeComponent,
+    CarDataComponent,
     OrderDetailsComponent
-    
+
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    FormsModule,
+
     ReactiveFormsModule,
+    FormsModule,
+    HttpClientModule,
+
+
+   
+
     RouterModule.forRoot([
       {path:'home', component: HomeComponent},
       {path:'appointment', component: AppointmentComponent},
-      {path:'products', component: CarComponent},
+      {path:'carRegister', component: CarComponent},
+      {path:'products1', component: CarDataComponent},
       {path:'login', component: LoginComponent},
       {path:'order', component: OrderComponent},
       {path:'order-details', component: OrderDetailsComponent},
       {path:'register', component: LoginComponent},
       {path:'payment', component: PaymentComponent},
+
       {path: '', redirectTo: 'home', pathMatch: 'full'},
       {path: '**', redirectTo: 'home', pathMatch: 'full'}
     ])
