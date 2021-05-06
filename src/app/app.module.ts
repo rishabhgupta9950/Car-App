@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -30,10 +31,13 @@ import { OrderDetailsComponent } from './order-details/order-details.component';
     FooterComponent,
     HomeComponent,
     OrderDetailsComponent
+    
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
+    FormsModule,
+    ReactiveFormsModule,
     RouterModule.forRoot([
       {path:'home', component: HomeComponent},
       {path:'appointment', component: AppointmentComponent},
