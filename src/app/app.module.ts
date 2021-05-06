@@ -38,6 +38,7 @@ import { RouterModule } from '@angular/router';
       {path:'products', component: CarComponent},
       {path:'login', component: LoginComponent},
       {path:'register', component: LoginComponent},
+      {path:'order', component: OrderComponent},
       {path: '', redirectTo: 'home', pathMatch: 'full'},
       {path: '**', redirectTo: 'home', pathMatch: 'full'}
     ])
