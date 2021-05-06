@@ -1,0 +1,51 @@
+<div class="container mt-3 mb-3">
+    <div class="d-flex justify-content-between align-items-center mb-5">
+        <div class="d-flex flex-row align-items-center">
+            <h4 class="text-uppercase mt-1">Demo Pay</h4> <span class="ml-2">Gateway</span>
+        </div>
+        <a routerLink='/products' class="cancel com-color">Cancel and return to website</a>
+    </div>
+    <div class="row">
+        <div class="col-md-6">
+            <h5 class="mb-2">Total Amount to Pay:<span class="text-success">{{amount | currency:'INR'}}</span></h5>
+            <div *ngFor='let cars of order.car'>
+                <h5 class="mb-3">{{cars.brand + ' '+ cars.model}}</h5>
+                <div class="about">
+                    <div class="d-flex justify-content-between">
+                        <div class="d-flex flex-row mt-1">
+                            <h6>{{cars.variant + ' '+ cars.color}}</h6>
+                            <h6 class="text-success font-weight-bold ml-1">{{cars.price| currency:'INR'}}</h6>
+                        </div>
+                    </div>
+                    <p></p>
+                    <hr>
+                </div>
+            </div>
+            <div class="buttons"> <a class="btn btn-success btn-block" routerLink='/payment'>Proceed to payment</a>
+            </div>
+        </div>
+        <div class="col-md-2"> </div>
+        <div class="col-md-4">
+            <div class="bg-pay p-3"> <span class="font-weight-bold">Order Recap</span>
+                <div class="d-flex justify-content-between mt-2"> <span class="fw-500">contracted Price</span>
+                    <span>{{total | currency:'INR'}}</span>
+                </div>
+                <div class="d-flex justify-content-between mt-2"> <span class="fw-500">Amount Deductible</span>
+                    <span>₹0.0</span>
+                </div>
+                <div class="d-flex justify-content-between mt-2"> <span class="fw-500">Coinsurance(0%)</span> <span>+
+                        ₹0.0</span> </div>
+                <hr>
+                <div class="d-flex justify-content-between mt-2"> <span class="fw-500">SGST</span>
+                    <span>{{sgst | currency:'INR'}}</span>
+                </div>
+                <div class="d-flex justify-content-between mt-2"> <span class="fw-500">CGST</span>
+                    <span>{{cgst | currency:'INR'}}</span>
+                </div>
+                <hr>
+                <div class="d-flex justify-content-between mt-2"> <span class="fw-500">Total </span> <span
+                        class="text-success">{{amount | currency:'INR'}}</span> </div>
+            </div>
+        </div>
+    </div>
+</div>
