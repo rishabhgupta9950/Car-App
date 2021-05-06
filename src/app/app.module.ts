@@ -51,7 +51,7 @@ import { from } from 'rxjs';
       {path:'home', component: HomeComponent},
       {path:'appointment', component: AppointmentComponent},
       {path:'carRegister', component: CarComponent},
-      {path:'products1', component: CarDataComponent},
+      {path:'products', component: CarDataComponent},
       {path:'login', component: LoginComponent},
       {path:'order', component: OrderComponent},
       {path:'order-details', component: OrderDetailsComponent},
