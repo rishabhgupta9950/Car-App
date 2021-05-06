@@ -57,7 +57,6 @@ import { from } from 'rxjs';
       {path:'order-details', component: OrderDetailsComponent},
       {path:'register', component: LoginComponent},
       {path:'payment', component: PaymentComponent},
-
       {path: '', redirectTo: 'home', pathMatch: 'full'},
       {path: '**', redirectTo: 'home', pathMatch: 'full'}
     ])
