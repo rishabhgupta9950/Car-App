@@ -22,6 +22,8 @@ import { CarDataComponent } from './car-data/car-data.component';
 import { OrderDetailsComponent } from './order-details/order-details.component';
 import { from } from 'rxjs';
 import { RegisterComponent } from './register/register.component';
+import { PaymentAdminComponent } from './payment/payment.admin.component';
+import { AdminDashboardComponent } from './admin/admin.dashboard.component';
 
 
 
@@ -30,9 +32,11 @@ import { RegisterComponent } from './register/register.component';
     AppComponent,
     CustomerComponent,
     AdminComponent,
+    AdminDashboardComponent,
     CarComponent,
     AppointmentComponent,
     PaymentComponent,
+    PaymentAdminComponent,
     OrderComponent,
     LoginComponent,
     HeaderComponent,
@@ -59,7 +63,9 @@ import { RegisterComponent } from './register/register.component';
       {path:'order-details', component: OrderDetailsComponent},
       {path:'register', component: RegisterComponent},
       {path:'payment', component: PaymentComponent},
+      {path:'payment-admin', component: PaymentAdminComponent},
       {path:'admin', component: AdminComponent},
+      {path:'admin-dashboard', component: AdminDashboardComponent},
       {path: '', redirectTo: 'home', pathMatch: 'full'},
       {path: '**', redirectTo: 'home', pathMatch: 'full'}
     ])
