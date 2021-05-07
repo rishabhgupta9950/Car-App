@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Subscription } from 'rxjs';
+import { ICard } from '../models/card';
 import { IPayment } from '../models/payment';
 import { PaymentService } from '../services/payment.service';
 
@@ -15,6 +16,7 @@ export class PaymentAdminComponent implements OnInit {
   getByIdForm: FormGroup;
   getAllForm: FormGroup;
   delForm: FormGroup;
+  updateForm: FormGroup;
 
   constructor(private paymentService: PaymentService, private formBuilder: FormBuilder) {
     this.getByIdForm=this.formBuilder.group({
@@ -28,10 +30,21 @@ export class PaymentAdminComponent implements OnInit {
     this.delForm=this.formBuilder.group({
       paymentId: ['', Validators.required]
     });
+
+    this.updateForm=this.formBuilder.group({
+      paymentId: ['', Validators.required],
+      status: ['', Validators.required],
+      type: ['', Validators.required],
+      name: ['', Validators.required],
+      number: ['', Validators.required],
+      expiry: ['', Validators.required],
+      cvv: ['', Validators.required]
+    })
   }
   sub!: Subscription;
   payment: IPayment;
   payments: IPayment[]=[];
+  update: IPayment=new IPayment();
   click(name: number){
     this.openForm = name;
   }
@@ -44,6 +57,24 @@ export class PaymentAdminComponent implements OnInit {
     });
     this.getByIdForm.reset();
     this.openForm=2;
+  }
+
+  updatePayment(form: FormGroup){
+    this.update.id=form.get('paymentId').value;
+    this.update.status=form.get('status').value;
+    this.update.type=form.get('type').value;
+    this.update.card=new ICard();
+    this.update.card.name=form.get('name').value;
+    this.update.card.number=form.get('number').value;
+    this.update.card.expiry=form.get('expiry').value;
+    this.update.card.cvv=form.get('cvv').value;
+    this.sub=this.paymentService.updatePayment(this.update).subscribe(data =>{
+      console.log("Data Updated")
+    },
+    error=>{
+      console.log(error);
+    }
+    );
   }
 
   delById(form: FormGroup){

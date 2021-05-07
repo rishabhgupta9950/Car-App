@@ -11,7 +11,7 @@ import { IPayment } from '../models/payment';
 export class PaymentService {
 
   orderApi: string="http://localhost:8090/Order/getOrderDetails/"
-  paymentApi: string="http://localhost:8090/payment/"
+  paymentApi: string="http://localhost:8090/payment"
   constructor(private httpClient: HttpClient) { }
 
   public getOrderDetails(id: number): Observable<IOrder>{
@@ -29,7 +29,7 @@ export class PaymentService {
   }
 
   public deletePayment(id: number): Observable<IPayment>{
-    return this.httpClient.delete<IPayment>(`${this.paymentApi}remove/${id}`).pipe(
+    return this.httpClient.delete<IPayment>(`${this.paymentApi}/remove/${id}`).pipe(
       tap(data => console.log('Deleted Data', JSON.stringify(data))),
       catchError(this.handleError)
     )
@@ -43,15 +43,11 @@ export class PaymentService {
   }
 
   public addPAyment(pay: IPayment){
-    console.log('In addPayment()');
-    console.log(pay);
-    const header={ 'content-type': 'application/json'};
-    const body=JSON.stringify(pay);
-    // return this.httpClient.post<IPayment>(`${this.paymentApi}/add`,body,{'headers':header}).pipe(
-    //   tap(data => console.log('Payment Added', JSON.stringify(data))),
-    //   catchError(this.handleError)
-    // );
     return this.httpClient.post(`${this.paymentApi}/add`,pay);
+  }
+
+  public updatePayment(pay: IPayment){
+    return this.httpClient.put(`${this.paymentApi}/update`,pay);
   }
 
   private handleError(err: HttpErrorResponse){
