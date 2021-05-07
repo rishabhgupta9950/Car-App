@@ -21,6 +21,7 @@ import { CarDataComponent } from './car-data/car-data.component';
 
 import { OrderDetailsComponent } from './order-details/order-details.component';
 import { from } from 'rxjs';
+import { RegisterComponent } from './register/register.component';
 
 
 
@@ -38,13 +39,14 @@ import { from } from 'rxjs';
     FooterComponent,
     HomeComponent,
     CarDataComponent,
-    OrderDetailsComponent
+    OrderDetailsComponent,
+    RegisterComponent
 
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-
+    FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
     RouterModule.forRoot([
@@ -55,8 +57,9 @@ import { from } from 'rxjs';
       {path:'login', component: LoginComponent},
       {path:'order', component: OrderComponent},
       {path:'order-details', component: OrderDetailsComponent},
-      {path:'register', component: LoginComponent},
+      {path:'register', component: RegisterComponent},
       {path:'payment', component: PaymentComponent},
+      {path:'admin', component: AdminComponent},
       {path: '', redirectTo: 'home', pathMatch: 'full'},
       {path: '**', redirectTo: 'home', pathMatch: 'full'}
     ])
