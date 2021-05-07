@@ -74,11 +74,12 @@
                     <form [formGroup]="getByIdForm" (ngSubmit)="paymentById(getByIdForm)">
                         <div class="form-group">
                             <label for="paymentId" class="mx-2">Payment ID</label>
-                            <input type="number" formControlName="paymentId" id="paymentId" class="form-control" placeholder="Enter Payment ID"
-                                required />
+                            <input type="number" formControlName="paymentId" id="paymentId" class="form-control"
+                                placeholder="Enter Payment ID" required />
                         </div>
                         <div class="form-group">
-                            <button class="btn btn-primary mt-3 shadow float-right" [disabled]="getByIdForm.invalid" type="submit">Get Payment
+                            <button class="btn btn-primary mt-3 shadow float-right" [disabled]="getByIdForm.invalid"
+                                type="submit">Get Payment
                                 Details</button>
                         </div>
                     </form>
@@ -167,12 +168,17 @@
                 <div class="card-top my-3 mr-3 text-primary">
                     <h4 id="heading">Delete Payment</h4>
                 </div>
-                <div class="form-group">
-                    <label for="orderId" class="mx-2">Payment ID</label>
-                    <input type="number" class="form-control" placeholder="Enter Payment ID" required />
-                </div>
-                <div class="form-group">
-                    <button class="btn btn-primary mt-3 shadow float-right">Delete Payment Details</button>
+                <div class="card-body">
+                    <form [formGroup]="delForm" (ngSubmit)="delById(delForm)">
+                        <div class="form-group">
+                            <label for="orderId" class="mx-2">Payment ID</label>
+                            <input type="number" formControlName="paymentId" class="form-control" placeholder="Enter Payment ID" required />
+                        </div>
+                        <div class="form-group">
+                            <button class="btn btn-primary mt-3 shadow float-right" [disabled]="delForm.invalid"
+                            type="submit">Delete Payment Details</button>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>

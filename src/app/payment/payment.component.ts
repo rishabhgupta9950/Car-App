@@ -28,7 +28,13 @@ export class PaymentComponent implements OnInit {
     this.payment.id=101;
     this.payment.status="Successful";
     this.payment.type="Debit Card";
-    this.paymentService.addPAyment(this.payment);
+    this.paymentService.addPAyment(this.payment).subscribe(data =>{
+      console.log("Data Inserted")
+    },
+    error=>{
+      console.log(error);
+    }
+    );
     this.paymentForm.reset();
   }
 

@@ -28,6 +28,13 @@ export class PaymentService {
     );
   }
 
+  public deletePayment(id: number): Observable<IPayment>{
+    return this.httpClient.delete<IPayment>(`${this.paymentApi}remove/${id}`).pipe(
+      tap(data => console.log('Deleted Data', JSON.stringify(data))),
+      catchError(this.handleError)
+    )
+  }
+
   public getAllPayment(): Observable<IPayment[]>{
     return this.httpClient.get<IPayment[]>(`${this.paymentApi}/get`).pipe(
       tap(data => console.log('Payment Data', JSON.stringify(data))),
@@ -44,7 +51,7 @@ export class PaymentService {
     //   tap(data => console.log('Payment Added', JSON.stringify(data))),
     //   catchError(this.handleError)
     // );
-    console.log(this.httpClient.post(`${this.paymentApi}/add`,JSON.stringify(pay)));
+    return this.httpClient.post(`${this.paymentApi}/add`,pay);
   }
 
   private handleError(err: HttpErrorResponse){

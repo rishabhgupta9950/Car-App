@@ -14,6 +14,7 @@ export class PaymentAdminComponent implements OnInit {
   openForm: number = null;
   getByIdForm: FormGroup;
   getAllForm: FormGroup;
+  delForm: FormGroup;
 
   constructor(private paymentService: PaymentService, private formBuilder: FormBuilder) {
     this.getByIdForm=this.formBuilder.group({
@@ -22,6 +23,10 @@ export class PaymentAdminComponent implements OnInit {
 
     this.getAllForm=this.formBuilder.group({
 
+    });
+
+    this.delForm=this.formBuilder.group({
+      paymentId: ['', Validators.required]
     });
   }
   sub!: Subscription;
@@ -39,6 +44,16 @@ export class PaymentAdminComponent implements OnInit {
     });
     this.getByIdForm.reset();
     this.openForm=2;
+  }
+
+  delById(form: FormGroup){
+    this.sub=this.paymentService.deletePayment(form.value.paymentId).subscribe({
+      next: payment =>{
+        this.payment=payment;
+      }
+    });
+    this.delForm.reset();
+    this.openForm=4;
   }
 
   allPayment(form: FormGroup){
