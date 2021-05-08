@@ -1,7 +1,9 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http'
+
+
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -25,6 +27,10 @@ import { RegisterComponent } from './register/register.component';
 import { PaymentAdminComponent } from './payment/payment.admin.component';
 import { AdminDashboardComponent } from './admin/admin.dashboard.component';
 
+import { HttpClientModule } from '@angular/common/http';
+import { CarDeleteComponent } from './car-delete/car-delete.component';
+import { CarUpdateComponent } from './car-update/car-update.component';
+
 
 
 @NgModule({
@@ -44,7 +50,12 @@ import { AdminDashboardComponent } from './admin/admin.dashboard.component';
     HomeComponent,
     CarDataComponent,
     OrderDetailsComponent,
+
+    CarDeleteComponent,
+    CarUpdateComponent,
+
     RegisterComponent
+
 
   ],
   imports: [
@@ -56,8 +67,15 @@ import { AdminDashboardComponent } from './admin/admin.dashboard.component';
     RouterModule.forRoot([
       {path:'home', component: HomeComponent},
       {path:'appointment', component: AppointmentComponent},
+
+      // {path:'carRegister', component: CarComponent},
+      // {path:'deleteCar', component: CarDeleteComponent},
+      {path:'products', component: CarDataComponent},
+      {path:'carUpdate', component: CarUpdateComponent},
+
       {path:'carRegister', component: CarComponent},
       {path:'products', component: CarDataComponent},
+
       {path:'login', component: LoginComponent},
       {path:'order', component: OrderComponent},
       {path:'order-details', component: OrderDetailsComponent},
