@@ -2,6 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { IAdmin } from '../models/admin';
+import { ICard } from '../models/card';
+import { ICustomer } from '../models/customer';
+import { AdminService } from '../services/admin.service';
 
 @Component({
   selector: 'app-admin',
@@ -12,11 +15,12 @@ export class AdminComponent implements OnInit {
 
   adminForm: FormGroup;
   submitted: boolean = false;
+  customer: ICustomer=new ICustomer();
 
   authRequest: any;
 
   response: any;
-  constructor(private formBuilder: FormBuilder,  private router: Router) {
+  constructor(private formBuilder: FormBuilder, private adminService: AdminService, private router: Router) {
 
 
   }
@@ -42,16 +46,23 @@ export class AdminComponent implements OnInit {
   }
 
 
-  login() {
-    this.submitted = true;
-    if (this.adminForm.invalid)
-      return;
+  login(form:FormGroup) {
+    
     let userId = this.adminForm.controls.userId.value;
     let password = this.adminForm.controls.password.value;
-    this.authRequest = {
-      "userId": userId,
-      "password": password
-    };
+    // this.authRequest = {
+    //   "userId": userId,
+    //   "password": password
+    // };
+
+    this.adminService.SignIn(userId,password).subscribe({
+      next:customer => {
+        this.customer=customer;
+        console.log(this.customer);
+      }
+        });
+
+      
 
     console.log(`Sign in successful with ${userId} and ${password}.`);
     alert(`Sign in successful with ${userId} and ${password}.`);
