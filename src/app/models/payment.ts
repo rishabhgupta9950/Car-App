@@ -1,5 +1,5 @@
 import { ICard} from './card'
-export class Payment{
+export class IPayment{
     card: ICard;
     id: number;
     status: string;

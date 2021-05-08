@@ -1,0 +1,207 @@
+<!-- <p>car works!</p> -->
+<!-- <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css"> -->
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+<!-- <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>  -->
+<!------ Include the above in your HEAD tag ---------->
+
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-3"></div>
+        <div class="col-md-6">
+            <form [formGroup]="addForm" (ngSubmit)="addCustomer()">
+
+                <fieldset>
+                    <legend class="text-center">Registration Details <span class="req"></span></legend>
+
+                    <div class="form-group">
+                        <label for="Id"><span class="req">* </span> Name: </label>
+                        <input type="text" formControlName="name" id="Id" class="form-control " maxlength="28"
+                            placeholder="Enter Full Name" />
+
+                        <div *ngIf="submitted && addForm.controls.name.errors">
+                            <div class="text-danger" *ngIf="addForm.controls.name.errors.required">
+                                Name is required ..!
+                            </div>
+                            <div class="text-danger" *ngIf="addForm.controls.name.errors.pattern">
+                                Name must start with a capital letter ..!
+                            </div>
+                            <div class="text-danger" *ngIf="addForm.controls.name.errors.invalidMsg">
+                                Numeric values not allowed....
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="form-group">
+                        <label for="Brand"><span class="req">* </span> Email: </label>
+                        <input type="text" formControlName="email" id="brand" required class="form-control "
+                            maxlength="28" placeholder="Enter email id" />
+
+                        <div *ngIf="submitted && addForm.controls.email.errors">
+                            <div class="text-danger" *ngIf="addForm.controls.email.errors.required">
+                                Email is required ..!
+                            </div>
+                            <div class="text-danger" *ngIf="addForm.controls.email.errors.email">
+                                Invalid Email Address ..!
+                            </div>
+                        </div>
+                        <div class="text-danger" *ngIf="emailFlag">
+                            {{emailErrorMessage}}
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="contact"><span class="req">* </span> Contact No. </label>
+                        <input type="tel" formControlName="contactNo" id="model" required class="form-control contactNo"
+                            maxlength="28" placeholder="Enter contact No." />
+
+                        <div *ngIf="submitted && addForm.controls.contactNo.errors">
+                            <div class="text-danger" *ngIf="addForm.controls.contactNo.errors.required">
+                                Phone Number is required ..!
+                            </div>
+                            <div class="text-danger" *ngIf="addForm.controls.contactNo.errors.pattern">
+                                Mobile Number should start from 6 to 9 ..!
+                            </div>
+                            <div class="text-danger" *ngIf="addForm.controls.contactNo.errors.invalidMsg">
+                                Mobile Number should be numeric..!
+                            </div>
+                            <div class="text-danger" *ngIf="addForm.controls.contactNo.errors.minlength">
+                                Mobile Number should be 10 digit long..!
+                            </div>
+                            <div class="text-danger" *ngIf="addForm.controls.contactNo.errors.maxlength">
+                                Mobile Number should be 10 digit long..!
+                            </div>
+                        </div>
+                        <div class="text-danger" *ngIf="contactNoFlag">
+                            {{contactNoErrorMessage}}
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="Color"><span class="req">* </span> Role: </label>
+                        <input type="text" formControlName="role" id="color" required class="form-control phone"
+                            maxlength="28" placeholder="Enter role" />
+
+                        <!-- <div *ngIf="submitted && addForm.controls.role.errors">
+                                <div class="text-danger" *ngIf="addForm.controls.role.errors.required">
+                                    Option is required ..!
+                                </div>
+    
+                            </div> -->
+                    </div>
+
+
+                    <div class="form-group">
+                        <label for="Variant"><span class="req">* </span> Password: </label>
+                        <input type="password" formControlName="password" id="variant" required
+                            class="form-control phone" maxlength="28" placeholder="Enter Password" />
+
+                        <div *ngIf="submitted && addForm.controls.password.errors">
+                            <div class="text-danger" *ngIf="addForm.controls.password.errors.required">
+                                Password is required ..!
+                            </div>
+                            <div class="text-danger" *ngIf="addForm.controls.password.errors.pattern">
+                                Password must have 1 Lowercase letters, 1 Uppercase letters, 1 Numbers and 1 Special
+                                characters and minimum length 9 ..!
+                            </div>
+                        </div>
+
+                    </div>
+
+
+                    <div class="form-group">
+                        <label for="Price"><span class="req">* </span> UserId : </label>
+                        <input class="form-control" formControlName="userId" type="number" id="Id"
+                            placeholder="Enter UserId" required />
+                        <div id="errLast"></div>
+                    </div>
+
+
+                    <div class="form-group">
+                        <label for="Year"><span class="req">* </span> DOB : </label>
+                        <input class="form-control" type="text" formControlName="dob" id="Id" required
+                            placeholder="Date of Birth" />
+                        <div id="errLast"></div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="door"><span class="req">* </span> DoorNo : </label>
+                        <input class="form-control" type="number" formControlName="doorNo" id="Id" required
+                            placeholder="Enter DoorNo" />
+                        <div id="errLast"></div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="Year"><span class="req">* </span> Street : </label>
+                        <input class="form-control" type="text" formControlName="street" id="Id" required
+                            placeholder="Enter Street" />
+                        <div id="errLast"></div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="area"><span class="req">* </span>Area : </label>
+                        <input class="form-control" type="text" formControlName="area" id="Area" required
+                            placeholder="Enter your Area" />
+                        <div id="errLast"></div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="city"><span class="req">* </span>City : </label>
+                        <input class="form-control" type="text" formControlName="city" id="City" required
+                            placeholder="Enter your City" />
+                        <div id="errLast"></div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="State"><span class="req">* </span>State : </label>
+                        <input class="form-control" type="text" formControlName="state" id="State" required
+                            placeholder="Enter State" />
+                        <div id="errLast"></div>
+                    </div>
+
+                    <!-- <div class="form-group">
+                        <label for="pin"><span class="req">* </span>Pincode : </label>
+                        <input class="form-control" type="number" formControlName="pincode" id="zip" required
+                        maxlength="6" placeholder="Enter Pincode" />
+                        <div id="errLast"></div>
+
+                        <div *ngIf="submitted && addForm.controls.pincode.errors">
+                            <div class="text-danger" *ngIf="addForm.controls.pincode.errors.required">
+                                Pincode required!
+                            </div>
+
+                            <div class="text-danger" *ngIf="addForm.controls.pincode.errors.pattern">
+                                Pincode should be of length 6..!
+                            </div>
+                        </div>
+                    </div> -->
+
+                    <div class="form-group">
+                            <label for="Pin"><span class="req">*</span>Pincode:</label>
+                            <input class="form-control" type="number" formControlName="pincode" id="zip" required
+                            maxlength="6" placeholder="Enter Pincode" />
+                        
+                        <div *ngIf="submitted && addForm.controls.pincode.errors"></div>
+                        <div class="text-danger" *ngIf="addForm.controls.pincode.errors?.required">
+                            Pincode required!
+                        </div>
+
+                        
+
+                        <div class="text-danger" *ngIf="addForm.controls.pincode.errors?.pattern">
+                            Pincode should be of length 6..!
+                        </div>
+
+                    </div>
+
+                    <!-- <button type="submit" [disabled]="!profileForm.valid">Submit</button> -->
+                    <button class="btn btn-lg btn-primary btn-block mb-2" type="submit">Register</button>
+
+                </fieldset>
+            </form>
+
+        </div>
+    </div>
+</div>
+
