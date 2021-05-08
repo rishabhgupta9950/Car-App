@@ -2,9 +2,6 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-
-
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { CustomerComponent } from './customer/customer.component';
@@ -30,6 +27,7 @@ import { AdminDashboardComponent } from './admin/admin.dashboard.component';
 import { HttpClientModule } from '@angular/common/http';
 import { CarDeleteComponent } from './car-delete/car-delete.component';
 import { CarUpdateComponent } from './car-update/car-update.component';
+import { CartDetailComponent } from './cart-detail/cart-detail.component';
 
 
 
@@ -50,11 +48,10 @@ import { CarUpdateComponent } from './car-update/car-update.component';
     HomeComponent,
     CarDataComponent,
     OrderDetailsComponent,
-
     CarDeleteComponent,
     CarUpdateComponent,
-
-    RegisterComponent
+    RegisterComponent,
+    CartDetailComponent
 
 
   ],
@@ -78,6 +75,7 @@ import { CarUpdateComponent } from './car-update/car-update.component';
 
       {path:'login', component: LoginComponent},
       {path:'order', component: OrderComponent},
+      {path:'cart', component: CartDetailComponent},
       {path:'order-details', component: OrderDetailsComponent},
       {path:'register', component: RegisterComponent},
       {path:'payment', component: PaymentComponent},
