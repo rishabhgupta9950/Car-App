@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { map } from 'rxjs/operators';
 import { ICar } from '../models/car';
 import { CarRegisterService } from '../services/car-register.service';
@@ -10,16 +11,18 @@ import { CarRegisterService } from '../services/car-register.service';
 })
 export class CarDataComponent implements OnInit {
 
-  constructor(private carServive: CarRegisterService) { }
+  constructor(private carServive: CarRegisterService, private router:Router) { }
 
   cars: ICar[] = [];
   // selectedCars: ICar[] = [];
   // totalCartItems:number;
-  num:any;
+  num:number;// = JSON.parse(localStorage.getItem('len'));
   length:number=0;
   filters = {
     keyword:''
   }
+
+  n:number;
 
   //   {
   //     "id": 190,
@@ -76,11 +79,9 @@ export class CarDataComponent implements OnInit {
 
   ngOnInit(): void {
     this.carServive.getAllCars().subscribe(data=>this.cars=data);
-    // console.log(JSON.parse(localStorage.getItem('len')));
-    // this.num=JSON.parse(localStorage.getItem('len'));
-  //  this.totalCartItems=this.totalCartItems+num;
-    // console.log("this is: "+this.totalCartItems);
-    console.log(typeof(this.num));
+    this.num=JSON.parse(localStorage.getItem('len'));
+    // console.log(this.num);
+    this.n=JSON.parse(localStorage.getItem('len'));
   }
 
   carList(){
@@ -100,15 +101,22 @@ export class CarDataComponent implements OnInit {
     })
   }
 
-addToCart(car: ICar){
-  console.log(JSON.parse(localStorage.getItem('len')));
+addToCart(id:number){
+  // console.log(JSON.parse(localStorage.getItem('len')));
   // this.carServive.cartDetails(car).sub
-  console.log("Inside add to cart: "+this.num);
-  this.length = this.carServive.cartDetails(car);
-  console.log(JSON.parse(localStorage.getItem('len')));
-  // console.log(this.length);
+  
+  console.log("Inside add to cart: "+JSON.parse(localStorage.getItem('len')));
+  this.length= this.carServive.cartDetails(id,this.num);
+  // console.log("length from storage:"+JSON.parse(localStorage.getItem('len')));
+  console.log("length from storage: "+this.length);
   // this.length+=this.num;
+  
+  this.router.routeReuseStrategy.shouldReuseRoute=()=>false;
+  this.router.onSameUrlNavigation='reload';
+  this.router.navigate(['/products']);
 }
 
-
+goToCart(){
+  this.router.navigate(['/order-details']);
+}
 }
