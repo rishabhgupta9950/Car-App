@@ -66,6 +66,7 @@ import { AdminDashboardComponent } from './admin/admin.dashboard.component';
       {path:'payment-admin', component: PaymentAdminComponent},
       {path:'admin', component: AdminComponent},
       {path:'admin-dashboard', component: AdminDashboardComponent},
+      {path:'customer', component: CustomerComponent},
       {path: '', redirectTo: 'home', pathMatch: 'full'},
       {path: '**', redirectTo: 'home', pathMatch: 'full'}
     ])
