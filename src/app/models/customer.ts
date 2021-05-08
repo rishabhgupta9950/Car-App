@@ -1,6 +1,6 @@
 import { IAddress } from "./address";
 
-export interface ICustomer{
+export class ICustomer{
     userId: number;
     password: string;
     role: string;
