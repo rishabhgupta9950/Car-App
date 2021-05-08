@@ -78,7 +78,7 @@
         </div>
 
         <div *ngSwitchCase='2'>
-            <div class="card my-5 mr-5 p-3">
+            <div class="my-5 mr-5 p-3">
                 <div class="card-top my-3 mr-3 text-primary">
                     <h4 id="heading">Get Customer By Id</h4>
                 </div>
@@ -96,7 +96,7 @@
                         </div>
                     </form>
                 </div>
-                <div *ngIf="(customer)">
+                <div class="card-body" *ngIf='customer'>
                     <p class="mb-4 display-4">Customer details</p>
                     <table class="table table-bordered">
                         <thead>
@@ -213,8 +213,7 @@
                         </div>
 
                         <div class="form-group">
-                            <button class="btn btn-primary mt-3 shadow float-right" 
-                                type="submit">Update</button>
+                            <button class="btn btn-primary mt-3 shadow float-right" type="submit">Update</button>
                         </div>
                     </form>
                 </div>
