@@ -7,7 +7,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class OrderComponent implements OnInit {
 
+  openForm: number = null;
+
   constructor() { }
+
+  click(name: number){
+    this.openForm = name;
+  }
 
   ngOnInit(): void {
   }
