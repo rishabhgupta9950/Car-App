@@ -68,6 +68,7 @@ export class RegisterComponent implements OnInit {
 
     this.customerService.addCustomer(this.customer).subscribe(data => {
       console.log("Data Inserted")
+      this.router.navigate(['/login']);
     },
 
     );
