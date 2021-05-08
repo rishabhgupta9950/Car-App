@@ -15,7 +15,8 @@
                 <!-- <span col-md-3><input type="text" class="form-control" placeholder="Search here" 
                     name="keyword" [(ngModel)]="filters.keyword" (input)="carList()" id=""></span> -->
                      <!-- <button class="btn btn-primary  ml-auto" >Cart :{{num}}</button>  -->
-                    <button class="btn btn-primary  ml-auto" >Cart :{{length}}</button> 
+                    <button class="btn btn-primary  ml-auto" (click)="goToCart()">
+                        <i class="fa fa-cart-plus px-2" aria-hidden="true"></i> Cart: {{n}}</button>
             </div>
             
         <!-- </p> -->
@@ -39,7 +40,7 @@
                     <p class="card-text mb-auto">This is {{c.model}} model by {{c.brand}}. </p>
                     <p><b>Price: </b><span class="text-success"> {{c.price | currency:'INR'}}</span></p>
                     <h6 href="#"><img src="assets/location_symbol.svg"> {{c.registrationState}}</h6>
-                    <button class="btn btn-primary add" (click)="addToCart(c)">Add</button>
+                    <button class="btn btn-primary add" (click)="addToCart(c.id)">Add</button>
                         
                     
                 </div>

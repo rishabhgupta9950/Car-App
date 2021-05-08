@@ -11,7 +11,7 @@ export class CarRegisterService {
 
   private getUrl: string = "http://localhost:8090/Cars/GetCars";
 
-  cartItems: ICar[] = [];
+  cartItems: number[] = [];
   cart:any;
 
   constructor(private http: HttpClient) { }
@@ -37,15 +37,21 @@ export class CarRegisterService {
     )
   }
 
-  cartDetails(car: ICar):number
+  cartDetails(id:number,num:number):number
   {
-    this.cartItems.push(car);
-    // localStorage.setItem('len',JSON.stringify(this.cartItems.length));
+    
+    this.cartItems.length=num;
+    this.cartItems.push(id);
+    console.log("Car Item length  :"+this.cartItems.length);
+    localStorage.setItem('len',JSON.stringify(this.cartItems.length));
+    localStorage.setItem('user',JSON.stringify(this.cartItems));
+
     // console.log(JSON.parse(localStorage.getItem('len')));
     // this.cart=num+JSON.parse(localStorage.getItem('len'));
     // console.log("Actual: "+this.cart);
     // return this.cart;
-    return this.cartItems.length;
+    // return this.cartItems.length;
+    return JSON.parse(localStorage.getItem('len'));
   }
 
   getCar(id:number):Observable<ICar>{
