@@ -44,7 +44,7 @@ import { from } from 'rxjs';
   imports: [
     BrowserModule,
     AppRoutingModule,
-
+    FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
     RouterModule.forRoot([

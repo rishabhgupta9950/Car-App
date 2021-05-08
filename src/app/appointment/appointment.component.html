@@ -48,8 +48,8 @@
 
                 <div class="card-body text-secondary">
                     <button class="btn" type="button" (click)="click(1)">
-                    <h5>Book Appointment</h5>
-                </button>
+                        <h5>Book Appointment</h5>
+                    </button>
 
                 </div>
 
@@ -63,17 +63,23 @@
             </div>
             <div class="card shadow mb-3 bg-white rounded">
                 <div class="card-body text-secondary">
-                    <h5>View Appointments</h5>
+                    <button class="btn" type="button" (click)="click(3)">
+                        <h5>View Appointments</h5>
+                    </button>
                 </div>
             </div>
             <div class="card shadow mb-3 bg-white rounded">
                 <div class="card-body text-secondary">
-                    <h5>Cancel Appointment</h5>
+                    <button class="btn" type="button" (click)="click(4)">
+                        <h5>Cancel Appointment</h5>
+                    </button>
                 </div>
             </div>
             <div class="card shadow mb-3 bg-white rounded">
                 <div class="card-body text-secondary">
-                    <h5>View Open Appointments</h5>
+                    <button class="btn" type="button" (click)="click(5)">
+                        <h5>View Open Appointments</h5>
+                    </button>
                 </div>
             </div>
         </div>
@@ -117,7 +123,7 @@
                             required>
                     </div>
                     <button class="btn btn-lg btn-primary btn-block mb-2 my-2" type="submit"
-                        [disabled]="userForm.invalid">Book
+                        [disabled]="!userForm.invalid">Book
                         Appointment</button>
                 </form>
             </div>
@@ -165,5 +171,75 @@
                 </form>
             </div>
         </div>
+        <div class="card my-5 mr-5 p-3 align-items-left" *ngSwitchCase='3'>
+            <div class="card-top my-3 mr-3 text-primary">
+                <h4 id="heading">View Appointments</h4>
+            </div>
+            <div class="card-body">
+                <form [formGroup]="appointmentForm" (ngSubmit)="onView(appointmentForm)">
+
+                    <div>
+                        <label for="id" class="mx-2">Appointment ID</label>
+                        <input type="number" formControlName="id" class="form-control mb-1" placeholder="Appointment ID"
+                            required autofocus>
+                    </div>
+                    <div class="text-danger"
+                        *ngIf="appointmentForm.get('id').invalid && (appointmentForm.get('id').touched)">
+                        Please enter a valid id.
+                    </div>
+                    <button class="btn btn-lg btn-primary btn-block mb-2 my-2" type="submit"
+                        [disabled]="appointmentForm.invalid">View
+                        Appointment</button>
+                </form>
+                <div *ngIf="(appointment.id === appointmentForm.value.id)">
+                    <p class="mb-4 display-4">Appointment data is here</p>
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th>Id</th>
+                                <th>Location</th>
+                                <th>Inspection Type</th>
+                                <th>Preferred Date</th>
+                                <th>Preferred Time</th>
+                                <th>Customer</th>
+                                <th>Payment</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>{{appointment.id}}</td>
+                                <td>{{appointment.location}}</td>
+                                <td>{{appointment.inspectionType}}</td>
+                                <td>{{appointment.preferredDate}}</td>
+                                <td>{{appointment.preferredTime}}</td>
+                                <td>{{appointment.customer.userId}}</td>
+                                <td>{{appointment.payment.id}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="card my-5 mr-5 p-3 align-items-left" *ngSwitchCase='4'>
+            <div class="card-top my-3 mr-3 text-primary">
+                <h4 id="heading">View Appointments</h4>
+            </div>
+            <div class="card-body">
+                <form [formGroup]="canceltForm" (ngSubmit)="onCancel(appointmentForm)">
+
+                    <div>
+                        <label for="id" class="mx-2">Appointment ID</label>
+                        <input type="number" formControlName="id" class="form-control mb-1" placeholder="Appointment ID"
+                            required autofocus>
+                    </div>
+                    <div class="text-danger"
+                        *ngIf="appointmentForm.get('id').invalid && (appointmentForm.get('id').touched)">
+                        Please enter a valid id.
+                    </div>
+                    <button class="btn btn-lg btn-primary btn-block mb-2 my-2" type="submit"
+                        [disabled]="appointmentForm.invalid">Cancel
+                        Appointment</button>
+                </form>
+            </div>
+        </div>
     </div>
-</div> -->
