@@ -48,7 +48,7 @@ export class CustomerComponent implements OnInit {
     })
   }
   sub!: Subscription;
-  customer: ICustomer;
+  customer: ICustomer=new ICustomer();
   customers: ICustomer[]=[];
   update: ICustomer=new ICustomer();
   click(name: number){
@@ -65,29 +65,35 @@ export class CustomerComponent implements OnInit {
     this.openForm=2;
   }
 
-  updateCustomer(form: FormGroup){
-    this.update.userId=form.get('userId').value;
-    this.update.password=form.get('password').value;
-    this.update.name=form.get('role').value;
-    this.update.email=form.get('role').value;
-    this.update.contactNo=form.get('role').value;
-    this.update.dob=form.get('role').value;
-  
-    this.update.address=new IAddress();
-    this.update.address.doorNo=form.get('doorNo').value;
-    this.update.address.street=form.get('street').value;
-    this.update.address.area=form.get('area').value;
-    this.update.address.city=form.get('city').value;
-    this.update.address.state=form.get('state').value;
-    this.update.address.pincode=form.get('pincode').value;
-    this.sub=this.customerService.updateCustomer(this.update).subscribe(data =>{
+  updateCustomer(form: FormGroup) {
+
+
+    console.log('In updateCustomer()');
+
+    this.customer.userId = form.get('userId').value;
+    this.customer.password = form.get('password').value;
+    this.customer.role = 'Customer';
+    this.customer.name = form.get('name').value;
+    this.customer.email = form.get('email').value;
+    this.customer.contactNo = form.get('contactNo').value;
+    this.customer.dob = form.get('dob').value;
+    this.customer.address = new IAddress();
+    this.customer.address.doorNo = form.get('doorNo').value;
+    this.customer.address.street = form.get('street').value;
+    this.customer.address.area = form.get('area').value;
+    this.customer.address.city = form.get('city').value;
+    this.customer.address.state = form.get('state').value;
+    this.customer.address.pincode = form.get('pincode').value;
+
+    this.customerService.updateCustomer(this.customer).subscribe(data =>{
       console.log("Data Updated")
     },
-    error=>{
-      console.log(error);
-    }
     );
+
+    this.updateForm.reset();
+
   }
+
 
   delById(form: FormGroup){
     this.sub=this.customerService.removeCustomer(form.value.userId).subscribe({
