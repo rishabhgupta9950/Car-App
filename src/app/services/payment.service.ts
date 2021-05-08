@@ -43,6 +43,7 @@ export class PaymentService {
   }
 
   public addPAyment(pay: IPayment){
+    console.log(pay);
     return this.httpClient.post(`${this.paymentApi}/add`,pay);
   }
 
