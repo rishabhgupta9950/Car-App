@@ -1,6 +1,6 @@
 export class ICard{
     cvv: number;
-    expiry: Date;
+    expiry: string;
     name: string;
     number: number;
 }

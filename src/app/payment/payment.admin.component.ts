@@ -44,6 +44,7 @@ export class PaymentAdminComponent implements OnInit {
   sub!: Subscription;
   payment: IPayment;
   payments: IPayment[]=[];
+  delete: IPayment;
   update: IPayment=new IPayment();
   click(name: number){
     this.openForm = name;
@@ -80,7 +81,7 @@ export class PaymentAdminComponent implements OnInit {
   delById(form: FormGroup){
     this.sub=this.paymentService.deletePayment(form.value.paymentId).subscribe({
       next: payment =>{
-        this.payment=payment;
+        this.delete=payment;
       }
     });
     this.delForm.reset();
