@@ -1,0 +1,25 @@
+.jumbotron{
+    background-color: rgb(174, 174, 235);
+}
+
+h1{
+    font-family: serif;
+}
+
+.detail{
+    font-family: serif;
+}
+
+.add{
+    margin-left: auto;
+    padding-left: 21px;
+    padding-right: 21px;
+    margin-bottom: -17px;
+}
+
+.cart{
+    margin-left: 900px;
+    padding-left: 21px;
+    padding-right: 21px;
+    margin-bottom: -17px;
+}

@@ -1,6 +1,8 @@
 
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { ICar } from '../models/car';
 import {CarRegisterService} from '../services/car-register.service'
 
 @Component({
@@ -12,41 +14,20 @@ export class CarComponent implements OnInit {
 
   register: FormGroup;
  
+  car: ICar;
 
-
-  constructor(private service:CarRegisterService, private formBuilder:FormBuilder ) { 
-    // ,
-    //   this.register = this.formBuilder.group({
-    //    id:[''],
-    //   brand: ['', Validators.required, Validators.min(3)],
-    //   model: ['', [Validators.required, Validators.min(3)]],
-    //   color: ['', [Validators.required, Validators.min(3)]],
-    //   variant: ['', [Validators.required, Validators.min(3)]],
-    //   price: ['', [Validators.required, Validators.min(4)]],
-    //   registrationYear: ['', [Validators.required, Validators.min(3)]],
-    //   registrationState: ['', [Validators.required, Validators.min(3)]]
-    // });
+  constructor(private service:CarRegisterService, private router:Router, private formBuilder:FormBuilder ) { 
+ 
+   
     
   }
 
  
 
   ngOnInit(): void {
-     this.register = this.formBuilder.group({
-      id: [''],
-      brand: ['', Validators.required, Validators.min(3)],
-      model: ['', [Validators.required, Validators.min(3)]],
-      color: ['', [Validators.required, Validators.min(3)]],
-      variant: ['', [Validators.required, Validators.min(3)]],
-      price: ['', [Validators.required, Validators.min(4)]],
-      registrationYear: ['', [Validators.required, Validators.min(3)]],
-      registrationState: ['', [Validators.required, Validators.min(3)]]
-    });
+   
   }
   
-   addCar(){
-    let resp=this.service.doRegistration(this.register.value);
-    resp.subscribe((data)=>console.log("Form submitted."));
-    }
+  
 
 }
