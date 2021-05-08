@@ -9,7 +9,7 @@ import { catchError, tap } from 'rxjs/operators';
 })
 export class AppointmentService {
 
-  private appointmentApi: string = 'http://localhost:8090/Appointment/GetAppointment';
+  private appointmentApi: string = 'http://localhost:8090/Appointment';
   private baseUrl: string = 'http://localhost:8090/Appointment/add';
 
   constructor(private httpClient: HttpClient) {
@@ -18,7 +18,7 @@ export class AppointmentService {
 
   public getAppointmentById(id: number): Observable<IAppointment> {
     console.log('getAppointmentByIdAppointmentService');
-    return this.httpClient.get<IAppointment>(`${this.appointmentApi}/${id}`).pipe(
+    return this.httpClient.get<IAppointment>(`${this.appointmentApi}/GetAppointment/${id}`).pipe(
       tap(data => console.log('All', JSON.stringify(data))),
       catchError(this.handleError)
     );
@@ -41,10 +41,25 @@ export class AppointmentService {
     // {responseType:'text' as 'json'}
   }
 
-  deleteAppointment(id: number): Observable<IAppointment> {
-    return this.httpClient.delete<IAppointment>(`http://localhost:8090/Appointment/add/${id}`).pipe(
+  public deleteAppointment(id: number): Observable<IAppointment> {
+    return this.httpClient.delete<IAppointment>(`${this.appointmentApi}/delete/${id}`).pipe(
       tap(data => console.log('All', JSON.stringify(data))),
       catchError(this.handleError)
     );
   }
+
+  public getAllAppointments(): Observable<IAppointment[]>{
+    return this.httpClient.get<IAppointment[]>(`${this.appointmentApi}/GetAppointments`).pipe(
+      tap(data => console.log('Appointment Data', JSON.stringify(data))),
+      catchError(this.handleError)
+    );
+  }
+
+  public getOpenAppointments(): Observable<IAppointment[]>{
+    return this.httpClient.get<IAppointment[]>(`${this.appointmentApi}/GetOpenAppointments`).pipe(
+      tap(data => console.log('Appointment Data', JSON.stringify(data))),
+      catchError(this.handleError)
+    );
+  }
+ 
 }

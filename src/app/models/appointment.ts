@@ -1,5 +1,5 @@
 import { ICustomer } from "./customer";
-import { Payment } from "./payment";
+import { IPayment } from "./payment";
 
 export class IAppointment{
     id: number;
@@ -8,7 +8,7 @@ export class IAppointment{
     preferredDate: string;
     preferredTime: string;
     customer: ICustomer;
-    payment: Payment;
+    payment: IPayment;
 
     
 

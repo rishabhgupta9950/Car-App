@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { IAppointment } from '../models/appointment';
+import { IPayment } from '../models/payment';
 import { AppointmentService } from '../services/appointment.service';
+import { PaymentService } from '../services/payment.service';
 
 
 @Component({
@@ -19,7 +21,7 @@ export class AppointmentComponent implements OnInit {
 
 
 
-  constructor(private appointmentService: AppointmentService, private formBuilder: FormBuilder) {
+  constructor(private appointmentService: AppointmentService,private paymentService: PaymentService,private formBuilder: FormBuilder) {
 
     this.userForm = this.formBuilder.group({
       id: ['', Validators.required],
@@ -30,10 +32,25 @@ export class AppointmentComponent implements OnInit {
       preferredTime: ['', Validators.required],
       payId: ['', Validators.required]
     });
+
+    this.cancelForm = this.formBuilder.group({
+      id: ['', Validators.required]
+    });
+
+    this.appointmentForm = this.formBuilder.group({
+      id: ['', Validators.required]
+    });
   }
 
 
   onSubmit(form: FormGroup) {
+    this.appointment.payment = new IPayment();
+     this.paymentService.getPaymentById(form.value.payId).subscribe({
+       next: payment =>{
+         this.appointment.payment = payment;
+       }
+     });
+   
     let resp = this.appointmentService.addAppointment(this.userForm.value);
     resp.subscribe((data) => {
       console.log("Form submitted.");
@@ -43,11 +60,22 @@ export class AppointmentComponent implements OnInit {
   }
 
   onView(form: FormGroup) {
-    this.appointmentService.getAppointmentById(form.value.id).subscribe(data => this.appointment = data);
+    this.appointmentService.getAppointmentById(form.value.id).subscribe({ 
+      next: appointment =>{
+      this.appointment=appointment;
+    }
+  });    
   }
 
   onCancel(form: FormGroup) {
-    this.appointmentService.deleteAppointment(form.value.id).subscribe(data => this.appointment = data);
+    this.appointmentService.deleteAppointment(form.value.id).subscribe({ 
+      next: appointment =>{
+      this.appointment=appointment;
+      alert(`Appointment Canceled successfully.`);
+    }
+  });
+  this.cancelForm.reset();
+    this.openForm=4;
   }
 
   ngOnInit(): void {

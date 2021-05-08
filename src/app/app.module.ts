@@ -24,6 +24,7 @@ import { from } from 'rxjs';
 import { RegisterComponent } from './register/register.component';
 import { PaymentAdminComponent } from './payment/payment.admin.component';
 import { AdminDashboardComponent } from './admin/admin.dashboard.component';
+import { AppointmentAdminComponent } from './appointment/appointment.admin.component';
 
 
 
@@ -35,6 +36,7 @@ import { AdminDashboardComponent } from './admin/admin.dashboard.component';
     AdminDashboardComponent,
     CarComponent,
     AppointmentComponent,
+    AppointmentAdminComponent,
     PaymentComponent,
     PaymentAdminComponent,
     OrderComponent,
@@ -56,6 +58,7 @@ import { AdminDashboardComponent } from './admin/admin.dashboard.component';
     RouterModule.forRoot([
       {path:'home', component: HomeComponent},
       {path:'appointment', component: AppointmentComponent},
+      {path:'appointment-admin', component: AppointmentAdminComponent},
       {path:'carRegister', component: CarComponent},
       {path:'products', component: CarDataComponent},
       {path:'login', component: LoginComponent},

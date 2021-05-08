@@ -1,43 +1,3 @@
-<!-- <div class="container card col-sm-5 mb-3 my-3">
-    <div class="card-top my-3 mr-3 text-primary">
-        <h4 id="heading">Book Appointment</h4>
-    </div>
-    <form [formGroup]="userForm" (ngSubmit)="onSubmit(userForm)">
-        
-        <div>
-            <label for="custId" class="mx-2">Customer ID</label>
-            <input type="text" formControlName="custId" class="form-control mb-1" placeholder="Customer ID" required
-                autofocus>
-        </div>
-<div>
-    <label for="location" class="mx-2">Location</label>
-        <input type="text" formControlName="location" class="form-control mb-1" placeholder="Location" required>
-    </div>
-    <div>
-        <label for="inspectionType" class="mx-2">Inspection Type</label>
-        <input type="text" formControlName="inspectionType" class="form-control mb-1" placeholder="Inspection Type"
-            required>
-        </div>
-        <div>
-            <label for="preferredDate" class="mx-2">Preferred Date</label>
-            <input type="date" formControlName="preferredDate" class="form-control mb-1" placeholder="Preferred Date"
-            required>
-        </div>
-        <div>
-            <label for="preferredTime" class="mx-2">Preferred Time</label>
-            <input type="time" formControlName="preferredTime" class="form-control mb-1" placeholder="Preferred Time"
-            required>
-        </div>
-        <div>
-            <label for="payId" class="mx-2">Payment ID</label>
-            <input type="text" formControlName="payId" class="form-control mb-1" placeholder="Payment ID" required>
-        </div>
-            <button class="btn btn-lg btn-primary btn-block mb-2 my-2" type="submit" [disabled]="userForm.invalid">Book
-            Appointment</button>
-    </form>
-</div> -->
-
-
 <div class="row">
     <div class="col-5">
         <div class="card my-5 ml-5 p-3 align-items-left">
@@ -72,13 +32,6 @@
                 <div class="card-body text-secondary">
                     <button class="btn" type="button" (click)="click(4)">
                         <h5>Cancel Appointment</h5>
-                    </button>
-                </div>
-            </div>
-            <div class="card shadow mb-3 bg-white rounded">
-                <div class="card-body text-secondary">
-                    <button class="btn" type="button" (click)="click(5)">
-                        <h5>View Open Appointments</h5>
                     </button>
                 </div>
             </div>
@@ -171,7 +124,7 @@
                 </form>
             </div>
         </div>
-        <div class="card my-5 mr-5 p-3 align-items-left" *ngSwitchCase='3'>
+        <div class="my-5 mr-5 p-3 align-items-left" *ngSwitchCase='3'>
             <div class="card-top my-3 mr-3 text-primary">
                 <h4 id="heading">View Appointments</h4>
             </div>
@@ -222,10 +175,10 @@
         </div>
         <div class="card my-5 mr-5 p-3 align-items-left" *ngSwitchCase='4'>
             <div class="card-top my-3 mr-3 text-primary">
-                <h4 id="heading">View Appointments</h4>
+                <h4 id="heading">Cancel Appointments</h4>
             </div>
             <div class="card-body">
-                <form [formGroup]="canceltForm" (ngSubmit)="onCancel(appointmentForm)">
+                <form [formGroup]="cancelForm" (ngSubmit)="onCancel(cancelForm)">
 
                     <div>
                         <label for="id" class="mx-2">Appointment ID</label>
@@ -237,9 +190,10 @@
                         Please enter a valid id.
                     </div>
                     <button class="btn btn-lg btn-primary btn-block mb-2 my-2" type="submit"
-                        [disabled]="appointmentForm.invalid">Cancel
+                        [disabled]="cancelForm.invalid">Cancel
                         Appointment</button>
                 </form>
             </div>
         </div>
     </div>
+</div>
