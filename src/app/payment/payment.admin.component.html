@@ -26,47 +26,49 @@
 
     <div class="col-7" [ngSwitch]="openForm">
         <div *ngSwitchCase='1'>
-            <div class="card-top my-3 mr-3 text-primary">
-                <h4 id="heading">All Paymnet Details</h4>
-            </div>
-            <div class="card-body">
-                <form [formGroup]="getAllForm" (ngSubmit)="allPayment(getAllForm)">
-                    <div class="form-group">
-                        <button class="btn btn-primary mt-4">Get Payment Details</button>
-                    </div>
-                </form>
-            </div>
-            <div *ngIf="(payments.length)">
-                <p class="mb-4 display-4">Payment details</p>
-                <table class="table table-bordered">
-                    <thead>
-                        <tr>
-                            <th>Id</th>
-                            <th>Status</th>
-                            <th>Type</th>
-                            <th>Card Holder</th>
-                            <th>Card Number</th>
-                            <th>Expiry</th>
-                            <th>CVV</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr *ngFor="let payment of payments">
-                            <td>{{payment.id}}</td>
-                            <td>{{payment.status}}</td>
-                            <td>{{payment.type}}</td>
-                            <td>{{payment.card.name}}</td>
-                            <td>{{payment.card.number}}</td>
-                            <td>{{payment.card.expiry}}</td>
-                            <td>{{payment.card.cvv}}</td>
-                        </tr>
-                    </tbody>
-                </table>
+            <div class="my-5 mr-5 p-3">
+                <div class="card-top my-3 mr-3 text-primary">
+                    <h4 id="heading">All Paymnet Details</h4>
+                </div>
+                <div class="card-body">
+                    <form [formGroup]="getAllForm" (ngSubmit)="allPayment(getAllForm)">
+                        <div class="form-group">
+                            <button class="btn btn-primary mt-4">Get Payment Details</button>
+                        </div>
+                    </form>
+                </div>
+                <div class="card-body" *ngIf="(payments.length)">
+                    <p class="mb-4 my-4 display-4">Payment details</p>
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th>Id</th>
+                                <th>Status</th>
+                                <th>Type</th>
+                                <th>Card Holder</th>
+                                <th>Card Number</th>
+                                <th>Expiry</th>
+                                <th>CVV</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let payment of payments">
+                                <td>{{payment.id}}</td>
+                                <td>{{payment.status}}</td>
+                                <td>{{payment.type}}</td>
+                                <td>{{payment.card.name}}</td>
+                                <td>{{payment.card.number}}</td>
+                                <td>{{payment.card.expiry | date :'YY/MM'}}</td>
+                                <td>{{payment.card.cvv}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
 
         <div *ngSwitchCase='2'>
-            <div class="card my-5 mr-5 p-3">
+            <div class="my-5 mr-5 p-3">
                 <div class="card-top my-3 mr-3 text-primary">
                     <h4 id="heading">Get Payments By Id</h4>
                 </div>
@@ -84,8 +86,8 @@
                         </div>
                     </form>
                 </div>
-                <div *ngIf="(payment)">
-                    <p class="mb-4 display-4">Payment details</p>
+                <div class="card-body" *ngIf="(payment)">
+                    <p class="mb-4 my-4 display-4">Payment details</p>
                     <table class="table table-bordered">
                         <thead>
                             <tr>
@@ -105,7 +107,7 @@
                                 <td>{{payment.type}}</td>
                                 <td>{{payment.card.name}}</td>
                                 <td>{{payment.card.number}}</td>
-                                <td>{{payment.card.expiry}}</td>
+                                <td>{{payment.card.expiry | date:'YY/MM'}}</td>
                                 <td>{{payment.card.cvv}}</td>
                             </tr>
                         </tbody>
@@ -123,13 +125,13 @@
                     <form [formGroup]="updateForm" (ngSubmit)="updatePayment(updateForm)">
                         <div class="form-group">
                             <label for="paymentId" class="mx-2">Payment ID</label>
-                            <input type="number" id="paymentId"formControlName="paymentId" class="form-control"
+                            <input type="number" id="paymentId" formControlName="paymentId" class="form-control"
                                 placeholder="Enter Payment ID" required />
                         </div>
                         <div class="form-group">
                             <label for="status" class="mx-2">Payment Status</label>
-                            <input type="text" id="status" formControlName="status" class="form-control" placeholder="Status"
-                                required />
+                            <input type="text" id="status" formControlName="status" class="form-control"
+                                placeholder="Status" required />
                         </div>
                         <div class="form-group">
                             <label for="type" class="mx-2">Payment Type</label>
@@ -138,8 +140,8 @@
                         </div>
                         <div class="form-group">
                             <label for="name" class="mx-2">Card Holder Name</label>
-                            <input type="text" id="name" formControlName="name" class="form-control" placeholder="John Doe"
-                                required />
+                            <input type="text" id="name" formControlName="name" class="form-control"
+                                placeholder="John Doe" required />
                         </div>
                         <div class="form-group">
                             <label for="cardNumber" class="mx-2">Card Number</label>
@@ -148,16 +150,17 @@
                         </div>
                         <div class="form-group">
                             <label for="expiry" class="mx-2">Expiry Date</label>
-                            <input type="text" id="expiry" formControlName="expiry" class="form-control" placeholder="MM/YY"
-                                required />
+                            <input type="text" id="expiry" formControlName="expiry" class="form-control"
+                                placeholder="MM/YY" required />
                         </div>
                         <div class="form-group">
                             <label for="cvv" class="mx-2">CVV</label>
-                            <input type="password" id="cvv" formControlName="cvv" class="form-control" placeholder="" required />
+                            <input type="password" id="cvv" formControlName="cvv" class="form-control" placeholder=""
+                                required />
                         </div>
                         <div class="form-group">
                             <button class="btn btn-primary mt-3 shadow float-right" [disabled]="updateForm.invalid"
-                            type="submit">Place Order</button>
+                                type="submit">Place Order</button>
                         </div>
                     </form>
                 </div>
@@ -165,7 +168,7 @@
         </div>
 
         <div *ngSwitchCase='4'>
-            <div class="card my-5 mr-5 p-3">
+            <div class="my-5 mr-5 p-3">
                 <div class="card-top my-3 mr-3 text-primary">
                     <h4 id="heading">Delete Payment</h4>
                 </div>
@@ -173,13 +176,41 @@
                     <form [formGroup]="delForm" (ngSubmit)="delById(delForm)">
                         <div class="form-group">
                             <label for="orderId" class="mx-2">Payment ID</label>
-                            <input type="number" formControlName="paymentId" class="form-control" placeholder="Enter Payment ID" required />
+                            <input type="number" formControlName="paymentId" class="form-control"
+                                placeholder="Enter Payment ID" required />
                         </div>
                         <div class="form-group">
                             <button class="btn btn-primary mt-3 shadow float-right" [disabled]="delForm.invalid"
-                            type="submit">Delete Payment Details</button>
+                                type="submit">Delete Payment Details</button>
                         </div>
                     </form>
+                </div>
+                <div class="card-body" *ngIf="(delete)">
+                    <p class="mb-4 my-4 display-4">Payment deleted</p>
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th>Id</th>
+                                <th>Status</th>
+                                <th>Type</th>
+                                <th>Card Holder</th>
+                                <th>Card Number</th>
+                                <th>Expiry</th>
+                                <th>CVV</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>{{delete.id}}</td>
+                                <td>{{delete.status}}</td>
+                                <td>{{delete.type}}</td>
+                                <td>{{delete.card.name}}</td>
+                                <td>{{delete.card.number}}</td>
+                                <td>{{delete.card.expiry | date:'YY/MM'}}</td>
+                                <td>{{delete.card.cvv}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </div>
