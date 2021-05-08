@@ -85,8 +85,11 @@ export class CarDataComponent implements OnInit {
 
   carList(){
     this.carServive.getAllCars().subscribe(
-      data=>this.cars = this.filterCars(data)
-    )
+      data=>{
+        this.cars = this.filterCars(data);
+        
+      });
+    
   }
 
   filterCars(cars: ICar[]){
