@@ -15,10 +15,10 @@
                     </div>
                     <form [formGroup]="paymentForm" (ngSubmit)="onSubmit(paymentForm)">
                         <span>Cardholder's name:</span> <input formControlName="name" placeholder="Linda Williams">
-                        <span>Card Number:</span> <input type="number" formControlName="cardNo"
+                        <span>Card Number:</span> <input type="text" formControlName="number"
                             placeholder="0125 6780 4567 9909">
                         <div class="row">
-                            <div class="col-4"><span>Expiry date:</span> <input placeholder="YY/MM"> </div>
+                            <div class="col-4"><span>Expiry date:</span> <input type="text" placeholder="YY/MM" formControlName="expiry"> </div>
                             <div class="col-4"><span>CVV:</span> <input formControlName="cvv" type="password" id="cvv">
                             </div>
                         </div>

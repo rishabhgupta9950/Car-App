@@ -25,7 +25,7 @@ export class OrderDetailsComponent implements OnInit, OnDestroy {
   }
   
   ngOnInit(): void {
-    this.sub=this.paymentService.getOrderDetails(234).subscribe({
+    this.sub=this.paymentService.getOrderDetails(247).subscribe({
       next: order => {
         this.order=order;
         for(let i=0;i<this.order.car.length;i++){
