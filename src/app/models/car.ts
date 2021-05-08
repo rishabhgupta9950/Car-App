@@ -1,6 +1,6 @@
 
 
-export interface ICar{
+export class ICar{
     id: number;
     brand: string;
     model: string;

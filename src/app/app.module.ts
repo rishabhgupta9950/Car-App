@@ -21,6 +21,8 @@ import { CarDataComponent } from './car-data/car-data.component';
 import { OrderDetailsComponent } from './order-details/order-details.component';
 
 import { HttpClientModule } from '@angular/common/http';
+import { CarDeleteComponent } from './car-delete/car-delete.component';
+import { CarUpdateComponent } from './car-update/car-update.component';
 
 
 @NgModule({
@@ -37,7 +39,9 @@ import { HttpClientModule } from '@angular/common/http';
     FooterComponent,
     HomeComponent,
     CarDataComponent,
-    OrderDetailsComponent
+    OrderDetailsComponent,
+    CarDeleteComponent,
+    CarUpdateComponent
 
   ],
   imports: [
@@ -49,8 +53,10 @@ import { HttpClientModule } from '@angular/common/http';
     RouterModule.forRoot([
       {path:'home', component: HomeComponent},
       {path:'appointment', component: AppointmentComponent},
-      {path:'carRegister', component: CarComponent},
-      {path:'products1', component: CarDataComponent},
+      // {path:'carRegister', component: CarComponent},
+      // {path:'deleteCar', component: CarDeleteComponent},
+      {path:'products', component: CarDataComponent},
+      {path:'carUpdate', component: CarUpdateComponent},
       {path:'login', component: LoginComponent},
       {path:'order', component: OrderComponent},
       {path:'order-details', component: OrderDetailsComponent},

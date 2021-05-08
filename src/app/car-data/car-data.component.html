@@ -1,15 +1,24 @@
 <!-- <p>car-data works!</p> -->
 
 <div class="px-4 py-2">
-    <div class="jumbotron bg-light">
+    <div class="jumbotron ">
         <h1 class="display-4">Welcome!</h1>
-        <p class="lead">This is a simple hero unit, a simple jumbotron-style component for calling extra attention to
-            featured content or information.</p>
+        <p class="lead detail">We are here to give you the best deal from market and for your pocket</p>
         <hr class="my-4">
         <p>It uses utility classes for typography and spacing to space content out within the larger container.</p>
-        <p class="lead">
-            <a class="btn btn-primary btn-lg" href="#" role="button">Search Cars</a>
-        </p>
+        <!-- <p class="lead"> -->
+            <!-- <a class="btn btn-primary btn-lg" href="#" role="button">Search Cars</a> -->
+            <div class="container row">
+            <span col-md-3><input type="text" class="form-control" placeholder="Search here" 
+                name="keyword" [(ngModel)]="filters.keyword" (input)="carList()" id=""></span>
+                
+                <!-- <span col-md-3><input type="text" class="form-control" placeholder="Search here" 
+                    name="keyword" [(ngModel)]="filters.keyword" (input)="carList()" id=""></span> -->
+                     <!-- <button class="btn btn-primary  ml-auto" >Cart :{{num}}</button>  -->
+                    <button class="btn btn-primary  ml-auto" >Cart :{{length}}</button> 
+            </div>
+            
+        <!-- </p> -->
     </div>
 
 
@@ -23,12 +32,15 @@
                 <div class="card-body d-flex flex-column align-items-start">
                     <strong class="d-inline-block mb-2 text-primary">Preview</strong>
                     <h3 class="mb-0">
-                        <a class="text-dark" href="#">{{c.model}}</a>
+                        <a class="text-dark detail" href="#">{{c.model | titlecase}}</a>
                     </h3>
-                    <div class="mb-1 text-muted">{{c.brand}}</div>
+                    <div class="mb-1 text-muted detail">{{c.brand}}</div>
                     <p class="card-text mb-auto">This is {{c.model}} model by {{c.brand}}. </p>
-                    <p> Available at price: <span class="text-success"> {{c.price | currency:'INR'}}</span></p>
+                    <p><b>Price: </b><span class="text-success"> {{c.price | currency:'INR'}}</span></p>
                     <h6 href="#"><img src="assets/location_symbol.svg"> {{c.registrationState}}</h6>
+                    <button class="btn btn-primary add" (click)="addToCart(c)">Add</button>
+                        
+                    
                 </div>
 
             </div>
