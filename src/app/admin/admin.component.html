@@ -4,7 +4,7 @@
     <div class="container row mb-5" style="margin-top: 2%;">
         <div class="col-md-6">
             <fieldset>
-                <form [formGroup]="adminForm">
+                <form [formGroup]="adminForm" (ngSubmit)="login(adminForm)">
                     <!-- Start of userId input field -->
                     <div class="col-md-11">
                         <div class="input-group mb-3 input-field">
@@ -39,7 +39,7 @@
 
 
                     <div>
-                        <button class="loginButton" (click)="login()">Login</button>
+                        <button class="loginButton" type="submit">Login</button>
 
                     </div>
                 </form>

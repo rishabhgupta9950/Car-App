@@ -26,7 +26,7 @@
 
     <div class="col-7" [ngSwitch]="openForm">
         <div *ngSwitchCase='1'>
-            <div class="card-top my-3 mr-3 text-primary">
+            <div class="top my-3 mr-3 text-primary">
                 <h4 id="heading">All Customer Details</h4>
             </div>
             <div class="card-body">
@@ -79,7 +79,11 @@
 
         <div *ngSwitchCase='2'>
             <div class="my-5 mr-5 p-3">
+
+                <div class="top my-3 mr-3 text-primary">
+
                 <div class="card-top my-3 mr-3 text-primary">
+
                     <h4 id="heading">Get Customer By Id</h4>
                 </div>
                 <div class="card-body">
@@ -139,7 +143,7 @@
         </div>
 
         <div *ngSwitchCase='3'>
-            <div class="card my-5 mr-5 p-3 align-items-left" name="update">
+            <div class=" my-5 mr-5 p-3 align-items-left" name="update">
                 <div class="card-top my-3 mr-3 text-primary">
                     <h4 id="heading">Update Customer</h4>
                 </div>
