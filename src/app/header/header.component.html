@@ -10,18 +10,19 @@
         <li class="nav-item">
           <a class="nav-link active" aria-current="page" routerLink='/home'>Home</a>
         </li>
+
         <!-- <li class="nav-item">
           <a class="nav-link" routerLink='/products1'>Products</a>
         </li> -->
         <!-- <li class="nav-item">
           <a class="nav-link" routerLink='/carRegister'>Add Car</a>
         </li> -->
+
+
         <li class="nav-item">
           <a class="nav-link" routerLink='/appointment'>Appointment</a>
         </li>
-        <!-- <li class="nav-item dropdown">
-          <a class="nav-link" routerLink='/appointment'>Appointment</a>
-        </li>-->
+        
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown"
             aria-expanded="false">
@@ -30,17 +31,32 @@
           <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
             <li><a class="dropdown-item" routerLink='/products'>All Products</a></li>
             <li><a class="dropdown-item" routerLink='/order'>Manage Order</a></li>
-            <li><a class="dropdown-item" routerLink='/carRegister'>Add Car</a></li>
-            <li><a class="dropdown-item" routerLink=''>Delete Car</a></li>
+
+            <li><a class="dropdown-item" routerLink='/carUpdate'>Update</a></li>
           </ul>
+        </li>
       </ul>
       <ul class="navbar-nav ml-auto">
         <form class="d-flex">
-          <!-- <li> <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search"></li> -->
-          <li><button class="btn btn-outline-success mx-2" type="submit">Login</button></li>
-          <li><button class="btn btn-outline-success mx-2" type="submit">Register</button></li>
+
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown"
+              aria-expanded="false">
+              Login
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <li><a routerLink='/admin' class="dropdown-item" href="#">Admin</a></li>
+              <li><a routerLink='/login' class="dropdown-item" href="#">Customer</a></li>
+            </ul>
+          </li>
+
+          <li><a routerLink='/register' class="btn btn-outline-success mx-2">Register</a></li>
+
+
+
         </form>
       </ul>
+
     </div>
   </div>
 </nav>

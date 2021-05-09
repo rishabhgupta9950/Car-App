@@ -1,6 +1,6 @@
-export interface ICard{
+export class ICard{
     cvv: number;
     expiry: string;
     name: string;
-    cardNumber: number;
+    number: number;
 }
