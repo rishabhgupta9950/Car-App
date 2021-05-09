@@ -116,6 +116,7 @@ addToCart(id:number){
   this.router.routeReuseStrategy.shouldReuseRoute=()=>false;
   this.router.onSameUrlNavigation='reload';
   this.router.navigate(['/products']);
+  
 }
 
 goToCart(){
