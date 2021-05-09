@@ -41,6 +41,7 @@ import { AppointmentAdminComponent } from './appointment/appointment.admin.compo
     AdminDashboardComponent,
     CarComponent,
     AppointmentComponent,
+    AppointmentAdminComponent,
     PaymentComponent,
     PaymentAdminComponent,
     OrderComponent,
