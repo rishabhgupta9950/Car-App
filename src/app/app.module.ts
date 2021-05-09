@@ -29,6 +29,7 @@ import { CarDeleteComponent } from './car-delete/car-delete.component';
 import { CarUpdateComponent } from './car-update/car-update.component';
 import { CartDetailComponent } from './cart-detail/cart-detail.component';
 import { AppointmentAdminComponent } from './appointment/appointment.admin.component';
+import { BillDetailsComponent } from './bill-details/bill-details/bill-details.component';
 
 
 
@@ -54,7 +55,8 @@ import { AppointmentAdminComponent } from './appointment/appointment.admin.compo
     CarDeleteComponent,
     CarUpdateComponent,
     RegisterComponent,
-    CartDetailComponent
+    CartDetailComponent,
+    BillDetailsComponent
 
 
   ],
@@ -83,6 +85,7 @@ import { AppointmentAdminComponent } from './appointment/appointment.admin.compo
       {path:'order-details', component: OrderDetailsComponent},
       {path:'register', component: RegisterComponent},
       {path:'payment', component: PaymentComponent},
+      {path:'bill-details', component: BillDetailsComponent},
       {path:'payment-admin', component: PaymentAdminComponent},
       {path:'admin', component: AdminComponent},
       {path:'admin-dashboard', component: AdminDashboardComponent},
