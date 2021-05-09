@@ -15,10 +15,41 @@
                     </div>
                     <form [formGroup]="paymentForm" (ngSubmit)="onSubmit(paymentForm)">
                         <span>Cardholder's name:</span> <input formControlName="name" placeholder="Linda Williams">
-                        <span>Card Number:</span> <input type="number" formControlName="cardNo"
+                        <span>Card Number:</span> <input type="text" formControlName="number"
                             placeholder="0125 6780 4567 9909">
                         <div class="row">
-                            <div class="col-4"><span>Expiry date:</span> <input placeholder="YY/MM"> </div>
+                            <div class="col-4">
+                                <span>Expiry:</span>
+                                <div></div>
+                                <select formControlName="month" class="col-6">
+                                    <!-- <option value="" disabled selected>Month</option> -->
+                                    <option value="01">01</option>
+                                    <option value="02">02</option>
+                                    <option value="03">03</option>
+                                    <option value="04">04</option>
+                                    <option value="05">05</option>
+                                    <option value="06">06</option>
+                                    <option value="07">07</option>
+                                    <option value="08">08</option>
+                                    <option value="09">09</option>
+                                    <option value="10">10</option>
+                                    <option value="11">11</option>
+                                    <option value="12">12</option>
+                                </select>
+                                <select formControlName="year" class="col-6">
+                                    <option value="2021">2021</option>
+                                    <option value="2022">2022</option>
+                                    <option value="2023">2023</option>
+                                    <option value="2024">2024</option>
+                                    <option value="2025">2025</option>
+                                    <option value="2026">2026</option>
+                                    <option value="2027">2027</option>
+                                    <option value="2028">2028</option>
+                                    <option value="2029">2029</option>
+                                    <option value="2030">2030</option>
+                                </select>
+                            </div>
+                            <!-- <div class="col-4"><span>Expiry date:</span> <input type="text" placeholder="YY/MM" formControlName="expiry"> </div> -->
                             <div class="col-4"><span>CVV:</span> <input formControlName="cvv" type="password" id="cvv">
                             </div>
                         </div>
