@@ -1,7 +1,7 @@
 import { ICar } from "./car";
 import { ICustomer } from "./customer";
 
-export interface IOrder{
+export class IOrder{
     id: number;
     billingDate: string;
     status: string;
