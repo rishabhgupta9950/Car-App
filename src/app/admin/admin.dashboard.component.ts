@@ -6,6 +6,8 @@ import { Component, OnInit } from "@angular/core";
     styleUrls: ['./admin.dashboard.component.css']
   })
   export class AdminDashboardComponent implements OnInit{
+
+    userId=JSON.parse(localStorage.getItem("adminId"));
     ngOnInit(): void {
     }
 
