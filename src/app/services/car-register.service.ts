@@ -11,8 +11,10 @@ export class CarRegisterService {
 
   private getUrl: string = "http://localhost:8090/Cars/GetCars";
 
-  cartItems: number[] = [];
+  cartItems: number[];
   cart:any;
+
+  dummy:number[];
 
   constructor(private http: HttpClient) { }
 
@@ -40,11 +42,40 @@ export class CarRegisterService {
   cartDetails(id:number,num:number):number
   {
     
-    this.cartItems.length=num;
+    if(JSON.parse(localStorage.getItem('user'))){
+      this.dummy = JSON.parse(localStorage.getItem('user'));
+      this.cartItems = [];
+
+      for(let i=0;i<this.dummy.length;i++)
+      {
+        this.cartItems.push(this.dummy[i]);
+      }
+      // this.cartItems.length=num;
     this.cartItems.push(id);
     console.log("Car Item length  :"+this.cartItems.length);
     localStorage.setItem('len',JSON.stringify(this.cartItems.length));
     localStorage.setItem('user',JSON.stringify(this.cartItems));
+    }
+    else{
+      this.cartItems =new Array;
+      this.cartItems.push(id);
+      console.log("Car Item length  :"+this.cartItems.length);
+      localStorage.setItem('len',JSON.stringify(this.cartItems.length));
+      localStorage.setItem('user',JSON.stringify(this.cartItems));
+    }
+    // this.cartItems.length=num;
+    // this.cartItems.push(id);
+    // console.log("Car Item length  :"+this.cartItems.length);
+    // localStorage.setItem('len',JSON.stringify(this.cartItems.length));
+    // localStorage.setItem('user',JSON.stringify(this.cartItems));
+
+    // main Code
+    // this.cartItems.length=num;
+    // this.cartItems.push(id);
+    // console.log("Car Item length  :"+this.cartItems.length);
+    // localStorage.setItem('len',JSON.stringify(this.cartItems.length));
+    // localStorage.setItem('user',JSON.stringify(this.cartItems));
+    // main Code
 
     // console.log(JSON.parse(localStorage.getItem('len')));
     // this.cart=num+JSON.parse(localStorage.getItem('len'));
