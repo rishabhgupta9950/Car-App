@@ -1,7 +1,7 @@
 import { ICustomer } from "./customer";
 import { IPayment } from "./payment";
 
-export class IAppointment{
+export class IAppointment {
     id: number;
     location: string;
     inspectionType: string;
@@ -9,8 +9,4 @@ export class IAppointment{
     preferredTime: string;
     customer: ICustomer;
     payment: IPayment;
-
-    
-
-   
 }

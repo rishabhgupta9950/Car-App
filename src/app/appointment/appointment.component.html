@@ -47,18 +47,23 @@
 
                     <div>
                         <label for="custId" class="mx-2">Customer ID</label>
-                        <input type="text" formControlName="custId" class="form-control mb-1" placeholder="Customer ID"
-                            required autofocus>
+                        <input type="number" formControlName="custId" class="form-control mb-1"
+                            placeholder="Customer ID" required autofocus>
                     </div>
                     <div>
                         <label for="location" class="mx-2">Location</label>
                         <input type="text" formControlName="location" class="form-control mb-1" placeholder="Location"
                             required>
                     </div>
-                    <div>
+                    <div class="form-group">
                         <label for="inspectionType" class="mx-2">Inspection Type</label>
-                        <input type="text" formControlName="inspectionType" class="form-control mb-1"
-                            placeholder="Inspection Type" required>
+                        <select class="form-control" formControlName="inspectionType">
+
+                            <option value="home">home</option>
+                            <option value="office">office</option>
+
+                        </select>
+
                     </div>
                     <div>
                         <label for="preferredDate" class="mx-2">Preferred Date</label>
@@ -72,11 +77,11 @@
                     </div>
                     <div>
                         <label for="payId" class="mx-2">Payment ID</label>
-                        <input type="text" formControlName="payId" class="form-control mb-1" placeholder="Payment ID"
+                        <input type="number" formControlName="payId" class="form-control mb-1" placeholder="Payment ID"
                             required>
                     </div>
                     <button class="btn btn-lg btn-primary btn-block mb-2 my-2" type="submit"
-                        [disabled]="!userForm.invalid">Book
+                        [disabled]="userForm.invalid">Book
                         Appointment</button>
                 </form>
             </div>
@@ -86,22 +91,31 @@
                 <h4 id="heading">Update Appointment</h4>
             </div>
             <div class="card-body">
-                <form [formGroup]="userForm" (ngSubmit)="onSubmit(userForm)">
+                <form [formGroup]="updateForm" (ngSubmit)="onUpdate(updateForm)">
+                    <div>
+                        <label for="id" class="mx-2">Appointment ID</label>
+                        <input type="number" formControlName="id" class="form-control mb-1" placeholder="Appointment ID"
+                            required autofocus>
+                    </div>
 
                     <div>
                         <label for="custId" class="mx-2">Customer ID</label>
-                        <input type="text" formControlName="custId" class="form-control mb-1" placeholder="Customer ID"
-                            required autofocus>
+                        <input type="number" formControlName="custId" class="form-control mb-1"
+                            placeholder="Customer ID" required autofocus>
                     </div>
                     <div>
                         <label for="location" class="mx-2">Location</label>
                         <input type="text" formControlName="location" class="form-control mb-1" placeholder="Location"
                             required>
                     </div>
-                    <div>
+                    <div class="form-group">
                         <label for="inspectionType" class="mx-2">Inspection Type</label>
-                        <input type="text" formControlName="inspectionType" class="form-control mb-1"
-                            placeholder="Inspection Type" required>
+                        <select class="form-control" formControlName="inspectionType">
+
+                            <option value="home">home</option>
+                            <option value="office">office</option>
+
+                        </select>
                     </div>
                     <div>
                         <label for="preferredDate" class="mx-2">Preferred Date</label>
@@ -115,16 +129,16 @@
                     </div>
                     <div>
                         <label for="payId" class="mx-2">Payment ID</label>
-                        <input type="text" formControlName="payId" class="form-control mb-1" placeholder="Payment ID"
+                        <input type="number" formControlName="payId" class="form-control mb-1" placeholder="Payment ID"
                             required>
                     </div>
                     <button class="btn btn-lg btn-primary btn-block mb-2 my-2" type="submit"
-                        [disabled]="userForm.invalid">Update
+                        [disabled]="updateForm.invalid">Update
                         Appointment</button>
                 </form>
             </div>
         </div>
-        <div class="my-5 mr-5 p-3 align-items-left" *ngSwitchCase='3'>
+        <div class="card my-5 mr-5 p-3 align-items-left" *ngSwitchCase='3'>
             <div class="card-top my-3 mr-3 text-primary">
                 <h4 id="heading">View Appointments</h4>
             </div>
@@ -144,33 +158,33 @@
                         [disabled]="appointmentForm.invalid">View
                         Appointment</button>
                 </form>
-                <div *ngIf="(appointment.id === appointmentForm.value.id)">
-                    <p class="mb-4 display-4">Appointment data is here</p>
-                    <table class="table table-bordered">
-                        <thead>
-                            <tr>
-                                <th>Id</th>
-                                <th>Location</th>
-                                <th>Inspection Type</th>
-                                <th>Preferred Date</th>
-                                <th>Preferred Time</th>
-                                <th>Customer</th>
-                                <th>Payment</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>{{appointment.id}}</td>
-                                <td>{{appointment.location}}</td>
-                                <td>{{appointment.inspectionType}}</td>
-                                <td>{{appointment.preferredDate}}</td>
-                                <td>{{appointment.preferredTime}}</td>
-                                <td>{{appointment.customer.userId}}</td>
-                                <td>{{appointment.payment.id}}</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
+            </div>
+            <div class="card-body" *ngIf="(app)">
+                <p class="mb-4 display-4">Appointment data is here</p>
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th>Id</th>
+                            <th>Location</th>
+                            <th>Inspection Type</th>
+                            <th>Preferred Date</th>
+                            <th>Preferred Time</th>
+                            <th>Customer</th>
+                            <th>Payment</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>{{app.id}}</td>
+                            <td>{{app.location}}</td>
+                            <td>{{app.inspectionType}}</td>
+                            <td>{{app.preferredDate}}</td>
+                            <td>{{app.preferredTime}}</td>
+                            <td>{{app.customer.userId}}</td>
+                            <td>{{app.payment.id}}</td>
+                        </tr>
+                    </tbody>
+                </table>
             </div>
         </div>
         <div class="card my-5 mr-5 p-3 align-items-left" *ngSwitchCase='4'>
@@ -185,14 +199,40 @@
                         <input type="number" formControlName="id" class="form-control mb-1" placeholder="Appointment ID"
                             required autofocus>
                     </div>
-                    <div class="text-danger"
-                        *ngIf="appointmentForm.get('id').invalid && (appointmentForm.get('id').touched)">
+                    <div class="text-danger" *ngIf="cancelForm.get('id').invalid && (cancelForm.get('id').touched)">
                         Please enter a valid id.
                     </div>
                     <button class="btn btn-lg btn-primary btn-block mb-2 my-2" type="submit"
                         [disabled]="cancelForm.invalid">Cancel
                         Appointment</button>
                 </form>
+            </div>
+            <div class="card-body" *ngIf="(delete)">
+                <p class="mb-4 display-4">Appointment Canceled Successfully</p>
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th>Id</th>
+                            <th>Location</th>
+                            <th>Inspection Type</th>
+                            <th>Preferred Date</th>
+                            <th>Preferred Time</th>
+                            <th>Customer</th>
+                            <th>Payment</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>{{appointment.id}}</td>
+                            <td>{{appointment.location}}</td>
+                            <td>{{appointment.inspectionType}}</td>
+                            <td>{{appointment.preferredDate}}</td>
+                            <td>{{appointment.preferredTime}}</td>
+                            <td>{{appointment.customer.userId}}</td>
+                            <td>{{appointment.payment.id}}</td>
+                        </tr>
+                    </tbody>
+                </table>
             </div>
         </div>
     </div>
