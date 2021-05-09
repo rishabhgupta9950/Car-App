@@ -56,12 +56,12 @@ export class AdminComponent implements OnInit {
     this.adminService.SignIn(userId, password).subscribe({
       next: admin => {
         this.admin = admin;
-        localStorage.setItem("adminId",JSON.stringify(this.admin.userId));
-        localStorage.setItem("userId",JSON.stringify(0));
+        localStorage.setItem("adminId", JSON.stringify(this.admin.userId));
+        localStorage.setItem("userId", JSON.stringify(0));
         console.log(this.admin);
         this.router.navigate(['/admin-dashboard']);
       },
-      error: err=>{
+      error: err => {
         alert('Invalid User Id or Passsword');
       }
     });
