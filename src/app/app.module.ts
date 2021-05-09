@@ -1,8 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http'
 
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { CustomerComponent } from './customer/customer.component';
@@ -24,6 +23,11 @@ import { from } from 'rxjs';
 import { RegisterComponent } from './register/register.component';
 import { PaymentAdminComponent } from './payment/payment.admin.component';
 import { AdminDashboardComponent } from './admin/admin.dashboard.component';
+
+import { HttpClientModule } from '@angular/common/http';
+import { CarDeleteComponent } from './car-delete/car-delete.component';
+import { CarUpdateComponent } from './car-update/car-update.component';
+import { CartDetailComponent } from './cart-detail/cart-detail.component';
 import { AppointmentAdminComponent } from './appointment/appointment.admin.component';
 
 
@@ -46,7 +50,11 @@ import { AppointmentAdminComponent } from './appointment/appointment.admin.compo
     HomeComponent,
     CarDataComponent,
     OrderDetailsComponent,
-    RegisterComponent
+    CarDeleteComponent,
+    CarUpdateComponent,
+    RegisterComponent,
+    CartDetailComponent
+
 
   ],
   imports: [
@@ -59,10 +67,18 @@ import { AppointmentAdminComponent } from './appointment/appointment.admin.compo
       {path:'home', component: HomeComponent},
       {path:'appointment', component: AppointmentComponent},
       {path:'appointment-admin', component: AppointmentAdminComponent},
+
+      // {path:'carRegister', component: CarComponent},
+      // {path:'deleteCar', component: CarDeleteComponent},
+      {path:'products', component: CarDataComponent},
+      {path:'carUpdate', component: CarUpdateComponent},
+
       {path:'carRegister', component: CarComponent},
       {path:'products', component: CarDataComponent},
+
       {path:'login', component: LoginComponent},
       {path:'order', component: OrderComponent},
+      {path:'cart', component: CartDetailComponent},
       {path:'order-details', component: OrderDetailsComponent},
       {path:'register', component: RegisterComponent},
       {path:'payment', component: PaymentComponent},
