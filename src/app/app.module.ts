@@ -28,6 +28,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { CarDeleteComponent } from './car-delete/car-delete.component';
 import { CarUpdateComponent } from './car-update/car-update.component';
 import { CartDetailComponent } from './cart-detail/cart-detail.component';
+import { AppointmentAdminComponent } from './appointment/appointment.admin.component';
+import { BillDetailsComponent } from './bill-details/bill-details/bill-details.component';
 
 
 
@@ -36,9 +38,11 @@ import { CartDetailComponent } from './cart-detail/cart-detail.component';
     AppComponent,
     CustomerComponent,
     AdminComponent,
+    AppointmentAdminComponent,
     AdminDashboardComponent,
     CarComponent,
     AppointmentComponent,
+    AppointmentAdminComponent,
     PaymentComponent,
     PaymentAdminComponent,
     OrderComponent,
@@ -51,7 +55,8 @@ import { CartDetailComponent } from './cart-detail/cart-detail.component';
     CarDeleteComponent,
     CarUpdateComponent,
     RegisterComponent,
-    CartDetailComponent
+    CartDetailComponent,
+    BillDetailsComponent
 
 
   ],
@@ -64,6 +69,7 @@ import { CartDetailComponent } from './cart-detail/cart-detail.component';
     RouterModule.forRoot([
       {path:'home', component: HomeComponent},
       {path:'appointment', component: AppointmentComponent},
+      {path:'appointment-admin', component: AppointmentAdminComponent},
 
       // {path:'carRegister', component: CarComponent},
       // {path:'deleteCar', component: CarDeleteComponent},
@@ -79,6 +85,7 @@ import { CartDetailComponent } from './cart-detail/cart-detail.component';
       {path:'order-details', component: OrderDetailsComponent},
       {path:'register', component: RegisterComponent},
       {path:'payment', component: PaymentComponent},
+      {path:'bill-details', component: BillDetailsComponent},
       {path:'payment-admin', component: PaymentAdminComponent},
       {path:'admin', component: AdminComponent},
       {path:'admin-dashboard', component: AdminDashboardComponent},

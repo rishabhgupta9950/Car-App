@@ -2,7 +2,9 @@ import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, throwError } from 'rxjs';
 import {tap, catchError } from "rxjs/operators"
+import { IAdmin } from '../models/admin';
 import { ICustomer } from '../models/customer';
+import { User } from '../models/user';
 
 @Injectable({
   providedIn: 'root'
@@ -10,6 +12,7 @@ import { ICustomer } from '../models/customer';
 export class CustomerService {
 
   customerApi: string="http://localhost:8090/customer"
+  loginApi: string="http://localhost:8090/user/SignIn"
   constructor(private httpClient: HttpClient) { }
 
 
@@ -41,6 +44,13 @@ export class CustomerService {
   public updateCustomer(customer: ICustomer){
     return this.httpClient.put(`${this.customerApi}/update`,customer);
   }
+
+
+  public SignIn(userId,password):Observable<IAdmin> {
+    return this.httpClient.post<IAdmin>(`${this.loginApi}/${userId}/${password}`,'');
+      ;
+  }
+
 
   private handleError(err: HttpErrorResponse){
     let errorMessage='';

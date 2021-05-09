@@ -41,7 +41,7 @@
         </div>
     </div>
     <div class="col-7" [ngSwitch]="openForm">
-        <div class="card my-5 mr-5 p-3 align-items-left" *ngSwitchCase='1'>
+        <div class="my-5 mr-5 p-3 align-items-left" *ngSwitchCase='1'>
             <div class="card-top my-3 mr-3 text-primary">
                 <h4 id="heading">Get Car Details</h4>
             </div>
@@ -83,7 +83,7 @@
                             <td>{{car.brand}}</td>
                             <td>{{car.model}}</td>
                             <td>{{car.color}}</td>
-                            <td>{{car.price}}</td>
+                            <td>{{car.price | currency:'INR'}}</td>
                             <td>{{car.variant}}</td>
                             <td>{{car.registrationYear}}</td>
                             <td>{{car.registrationState}}</td>
