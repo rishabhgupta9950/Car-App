@@ -23,6 +23,8 @@ export class CarDataComponent implements OnInit {
   }
 
   n:number;
+  pageOfItems:Array<ICar>;
+  pageSize: number = 6;
 
   //   {
   //     "id": 190,
@@ -119,4 +121,17 @@ addToCart(id:number){
 goToCart(){
   this.router.navigate(['/order-details']);
 }
+
+clearCart()
+{
+  localStorage.clear();
+  this.router.routeReuseStrategy.shouldReuseRoute=()=>false;
+  this.router.onSameUrlNavigation='reload';
+  this.router.navigate(['/products']);
+}
+
+pageClick(pageOfItems:Array<ICar>){
+  this.pageOfItems = pageOfItems;
+}
+
 }
