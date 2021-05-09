@@ -131,7 +131,9 @@ goToCart(){
 
 clearCart()
 {
-  localStorage.clear();
+  // localStorage.clear();
+  localStorage.removeItem('len');
+  localStorage.removeItem('user')
   this.router.routeReuseStrategy.shouldReuseRoute=()=>false;
   this.router.onSameUrlNavigation='reload';
   this.router.navigate(['/products']);

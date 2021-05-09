@@ -120,6 +120,7 @@ export class OrderDetailsComponent implements OnInit, OnDestroy {
       next: data =>{
         console.log('data received in order details component', data);
         this.orderId=data.id;
+        localStorage.setItem('orderId',JSON.stringify(this.orderId));
       }
     })
     

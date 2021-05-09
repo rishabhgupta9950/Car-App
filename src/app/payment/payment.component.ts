@@ -42,13 +42,14 @@ export class PaymentComponent implements OnInit {
     this.paymentService.addPAyment(this.payment).subscribe({
       next: data =>{
         console.log('Payment Successful', data);
-        this.router.navigate(['/bill-details'], {state: {id: this.orderId}})
+        this.router.navigateByUrl('/bill-details', {state: {id: this.orderId}});
       }
     });
     this.paymentForm.reset();
   }
 
   ngOnInit(): void {
+    this.orderId=JSON.parse(localStorage.getItem('orderId'));
   }
 
 }
