@@ -1,0 +1,190 @@
+
+    <div class="col-md-2"></div>
+    <div class="container col-md-8 card my-3 py-3">
+        <div class="card-top">
+            <div class="row justify-content-center">
+                <h3>Puchase Invoice</h3>
+            </div>
+        </div>
+        <div class="card-body">
+            <div class="row mt-3">
+                <div class="col-md-8"></div>
+                <div class="col-md-2">
+                    <div class="row justify-content-center">
+                        <h6>Billing Date</h6>
+                        <!-- <span>Date</span> -->
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <div class="row justify-content-center">
+                        <!-- <h5>Billing Date</h5> -->
+                        <h6>{{order.billingDate}}</h6>
+                    </div>
+                </div>
+            </div>
+            <div class="row mt-3 mb-2">
+                <div class="col-md-2">
+                    <div class="row">
+                        <h6>Order ID</h6>
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <div class="row">
+                        <h6>{{order.id}}</h6>
+                    </div>
+                </div>
+                <div class="col-md-8"></div>
+            </div>
+
+            <div class="row my-2">
+                <div class="col-md-2">
+                    <div class="row">
+                        <h6>Customer ID</h6>
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <div class="row">
+                        <h6>{{order.customer.userId}}</h6>
+                    </div>
+                </div>
+                <div class="col-md-8"></div>
+            </div>
+            
+            <div class="row my-2">
+                <div class="col-md-2">
+                    <div class="row">
+                        <h6>Name</h6>
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <div class="row">
+                        <h6>{{order.customer.name}}</h6>
+                    </div>
+                </div>
+                <div class="col-md-8"></div>
+            </div>
+
+            <div class="row my-2">
+                <div class="col-md-2">
+                    <div class="row">
+                        <h6>Contact No.</h6>
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <div class="row">
+                        <h6>{{order.customer.contactNo}}</h6>
+                    </div>
+                </div>
+                <div class="col-md-8"></div>
+            </div>
+
+            <div class="row my-2">
+                <div class="col-md-2">
+                    <div class="row">
+                        <h6>Email ID</h6>
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <div class="row">
+                        <h6>{{order.customer.email}}</h6>
+                    </div>
+                </div>
+                <div class="col-md-8"></div>
+            </div>
+
+            <div class="row my-2">
+                <div class="col-md-2">
+                    <div class="row">
+                        <h6>Address</h6>
+                    </div>
+                </div>
+                <div class="col-md-10">
+                    <div class="row">
+                        <h6>{{order.customer.address.doorNo}}, {{order.customer.address.street}}, {{order.customer.address.area}}, {{order.customer.address.city}}, {{order.customer.address.state}}, {{order.customer.address.pincode}}</h6>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row mt-4">
+                <div class="col-md-12">
+                    <div class="row justify-content-center">
+                        <h6>Order Details</h6>
+                    </div>
+                </div>
+                
+            </div>
+
+            <div class="row">
+                <table class="table table-bordered">
+                    <tr>
+                        <th class="text-center">Car ID</th>
+                        <th class="text-center">Model</th>
+                        <th class="text-center">Brand</th>
+                        <th class="text-center">Color</th>
+                        <th class="text-center">Variant</th>
+                        <th class="text-center">Registration State</th>
+                        <th class="text-center">Registration Year</th>
+                        <th class="text-center">Price</th>
+                    </tr>
+                    <tr *ngFor="let cars of order.car">
+                        <td class="text-center">{{cars.id}}</td>
+                        <td class="text-center">{{cars.model}}</td>
+                        <td class="text-center">{{cars.brand}}</td>
+                        <td class="text-center">{{cars.color}}</td>
+                        <td class="text-center">{{cars.variant}}</td>
+                        <td class="text-center">{{cars.registrationState}}</td>
+                        <td class="text-center">{{cars.registrationYear}}</td>
+                        <td class="text-center">{{cars.price | currency:'INR'}}</td>
+                    </tr>
+                </table>
+            </div>
+
+            <div class="row mt-3">
+                <div class="card col-md-9">
+                    <h6 class="p-1">Total Amount</h6>
+                </div>
+                <div class="card col-md-3">
+                    <div class="row justify-content-center">
+                        <h6 class="p-1">{{total | currency:'INR'}}</h6>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="card col-md-9">
+                    
+                    <div class="container row">                        
+                            <h6 class="py-1 px-2">SGST (9%)</h6>                        
+                    </div>
+                    <div class="container row">
+                        <h6 class="py-1 px-2">CGST (9%)</h6>
+                    </div>
+                </div>
+                <div class="card col-md-3">
+                    <div class="row justify-content-center">                        
+                        <h6 class="p-1">{{sgst | currency:'INR'}}</h6>                        
+                    </div>
+                    <div class="row justify-content-center">
+                        <h6 class="p-1">{{cgst | currency:'INR'}}</h6>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="card col-md-9">
+                    <h5 class="p-1">Grand Total</h5>
+                </div>
+                <div class="card col-md-3">
+                    <div class="row justify-content-center">
+                        <h5 class="p-1">{{amount | currency:'INR'}}</h5>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row justify-content-end m-5">
+                <button id="continueshop" class="btn btn-primary shadow rounded" routerLink="/products">Continue Shopping</button>
+            </div>
+
+        </div>
+    </div>
+    <div class="col-md-2"></div>
