@@ -4,30 +4,22 @@
     <div class="container row mb-5" style="margin-top: 2%;">
         <div class="col-md-6">
             <fieldset>
-                <form [formGroup]="loginForm">
-
+                <form [formGroup]="loginForm"  (ngSubmit)="login(loginForm)">
+                    <!-- Start of userId input field -->
                     <div class="col-md-11">
-
                         <div class="input-group mb-3 input-field">
-
-                            <!-- <legend class="text-center">Enter Credentials <span class="req"></span></legend> -->
-
                             <span><img
                                     src="https://img.icons8.com/ios-filled/50/000000/username.png" /></span>&nbsp;&nbsp;
-                            <input type="email" formControlName="email" placeholder="Email Address">
+                            <input type="number" formControlName="userId" placeholder="User Id">
                         </div>
-
-                        <div *ngIf="submitted && loginForm.controls.email.errors">
-                            <div class="text-danger" *ngIf="loginForm.controls.email.errors.required">
-                                Email is required ..!
-                            </div>
-                            <div class="text-danger" *ngIf="loginForm.controls.email.errors.email">
-                                Invalid Email Address ..!
+                        <!-- Validation Messages -->
+                        <div *ngIf="submitted && loginForm.controls.userId.errors">
+                            <div class="text-danger" *ngIf="loginForm.controls.userId.errors.required">
+                                UserId should be numeric ..!
                             </div>
                         </div>
 
                     </div>
-
 
                     <div class="col-md-11">
                         <div class="input-group mb-3 input-field">
@@ -46,7 +38,7 @@
 
 
                     <div>
-                        <button class="loginButton" (click)="login()">Login</button>
+                        <button class="loginButton">Login</button>
 
                     </div>
                 </form>

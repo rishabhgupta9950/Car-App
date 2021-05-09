@@ -3,6 +3,9 @@ import { Component, OnInit } from '@angular/core';
 import { Validators, FormBuilder, FormGroup } from '@angular/forms';
 //import * as jwt_decode from 'jwt-decode';
 import { Router } from '@angular/router';
+import { IAdmin } from '../models/admin';
+import { ICustomer } from '../models/customer';
+import { CustomerService } from '../services/customer.service';
 //import { UserService } from '../user.service';
 
 @Component({
@@ -13,11 +16,12 @@ import { Router } from '@angular/router';
 export class LoginComponent implements OnInit {
   loginForm: FormGroup;
   submitted: boolean = false;
+  customer: IAdmin = new IAdmin();
 
   authRequest: any;
 
   response: any;
-  constructor(private formBuilder: FormBuilder,  private router: Router) {
+  constructor(private customerService : CustomerService,private formBuilder: FormBuilder,  private router: Router) {
 
 
   }
@@ -35,7 +39,7 @@ export class LoginComponent implements OnInit {
     // }
     this.loginForm = this.formBuilder.group({
 
-      email: ['', [Validators.required, Validators.email]],
+      userId: ['', [Validators.required]],
       password: ['', Validators.required]
     })
     
@@ -43,19 +47,29 @@ export class LoginComponent implements OnInit {
   }
 
 
-  login() {
-    this.submitted = true;
-    if (this.loginForm.invalid)
-      return;
-    let email = this.loginForm.controls.email.value;
+  login(form : FormGroup) {
+    
+    let userId = this.loginForm.controls.userId.value;
     let password = this.loginForm.controls.password.value;
-    this.authRequest = {
-      "email": email,
-      "password": password
-    };
+    // this.authRequest = {
+    //   "userId": userId,
+    //   "password": password
+    // };
 
-    console.log(`Sign in successful with ${email} and ${password}.`);
-    alert(`Sign in successful with ${email} and ${password}.`);
+    this.customerService.SignIn(userId,password).subscribe({
+      next : customer => {
+          this.customer=customer;
+          console.log(this.customer);
+          this.router.navigate(['/products']);
+      },
+
+      error : err=> {
+        alert('Invalid UserId or Password');
+      }
+
+    });
+    console.log(`Sign in successful with ${userId} and ${password}.`);
+    
 
     // let resp = this.service.generateToken(this.authRequest);
     // resp.subscribe(data => {

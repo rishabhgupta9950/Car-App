@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
+import { NavigationExtras, Router } from '@angular/router';
 import { IAdmin } from '../models/admin';
+import { AdminService } from '../services/admin.service';
 
 @Component({
   selector: 'app-admin',
@@ -12,11 +13,12 @@ export class AdminComponent implements OnInit {
 
   adminForm: FormGroup;
   submitted: boolean = false;
+  admin: IAdmin = new IAdmin();
 
   authRequest: any;
 
   response: any;
-  constructor(private formBuilder: FormBuilder,  private router: Router) {
+  constructor(private formBuilder: FormBuilder, private adminService: AdminService, private router: Router) {
 
 
   }
@@ -29,7 +31,7 @@ export class AdminComponent implements OnInit {
     //     }
     //     else if(localStorage.role == 'ROLE_MERCHANT'){
     //        this.router.navigate(["/merchant"]);
- 
+
     //     }
     // }
     this.adminForm = this.formBuilder.group({
@@ -37,24 +39,40 @@ export class AdminComponent implements OnInit {
       userId: ['', [Validators.required]],
       password: ['', Validators.required]
     })
-    
+
 
   }
 
 
-  login() {
-    this.submitted = true;
-    if (this.adminForm.invalid)
-      return;
+  login(form: FormGroup) {
+
     let userId = this.adminForm.controls.userId.value;
     let password = this.adminForm.controls.password.value;
-    this.authRequest = {
-      "userId": userId,
-      "password": password
-    };
+    // this.authRequest = {
+    //   "userId": userId,
+    //   "password": password
+    // };
+
+    this.adminService.SignIn(userId, password).subscribe({
+      next: admin => {
+        this.admin = admin;
+        const navigationExtra: NavigationExtras={
+          state: {
+            userId: this.admin.userId
+          }
+        };
+        console.log(this.admin);
+        this.router.navigate(['/admin-dashboard'], navigationExtra);
+      },
+      error: err=>{
+        alert('Invalid User Id or Passsword');
+      }
+    });
+
+
 
     console.log(`Sign in successful with ${userId} and ${password}.`);
-    alert(`Sign in successful with ${userId} and ${password}.`);
+    // alert(`Sign in successful with ${userId} and ${password}.`);
 
     // let resp = this.service.generateToken(this.authRequest);
     // resp.subscribe(data => {
@@ -74,11 +92,10 @@ export class AdminComponent implements OnInit {
 
     //   }
     // }
-   
 
-
+    // this.router.navigate(['/admin-dashboard']);
   }
 
 }
 
- 
+

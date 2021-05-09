@@ -37,6 +37,7 @@ import { AppointmentAdminComponent } from './appointment/appointment.admin.compo
     AppComponent,
     CustomerComponent,
     AdminComponent,
+    AppointmentAdminComponent,
     AdminDashboardComponent,
     CarComponent,
     AppointmentComponent,
