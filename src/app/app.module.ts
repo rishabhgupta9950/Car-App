@@ -28,6 +28,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { CarDeleteComponent } from './car-delete/car-delete.component';
 import { CarUpdateComponent } from './car-update/car-update.component';
 import { CartDetailComponent } from './cart-detail/cart-detail.component';
+import { AppointmentAdminComponent } from './appointment/appointment.admin.component';
 
 
 
@@ -36,6 +37,7 @@ import { CartDetailComponent } from './cart-detail/cart-detail.component';
     AppComponent,
     CustomerComponent,
     AdminComponent,
+    AppointmentAdminComponent,
     AdminDashboardComponent,
     CarComponent,
     AppointmentComponent,
@@ -64,6 +66,7 @@ import { CartDetailComponent } from './cart-detail/cart-detail.component';
     RouterModule.forRoot([
       {path:'home', component: HomeComponent},
       {path:'appointment', component: AppointmentComponent},
+      {path:'appointment-admin', component: AppointmentAdminComponent},
 
       // {path:'carRegister', component: CarComponent},
       // {path:'deleteCar', component: CarDeleteComponent},
