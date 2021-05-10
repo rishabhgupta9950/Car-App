@@ -1,5 +1,4 @@
 <!-- <p>car-data works!</p> -->
-
 <div class="px-4 py-2">
     <div class="jumbotron ">
         <h1 class="display-4">Welcome!</h1>
@@ -7,29 +6,30 @@
         <hr class="my-4">
         <p>It uses utility classes for typography and spacing to space content out within the larger container.</p>
         <!-- <p class="lead"> -->
-            <!-- <a class="btn btn-primary btn-lg" href="#" role="button">Search Cars</a> -->
-            <div class="container row">
-            <span col-md-3><input type="text" class="form-control" placeholder="Search here" 
-                name="keyword" [(ngModel)]="filters.keyword" (input)="carList()" id=""></span>
-                
-                <!-- <span col-md-3><input type="text" class="form-control" placeholder="Search here" 
+        <!-- <a class="btn btn-primary btn-lg" href="#" role="button">Search Cars</a> -->
+        <div class="container row">
+            <span col-md-3><input type="text" class="form-control" placeholder="Search here" name="keyword"
+                    [(ngModel)]="filters.keyword" (input)="carList()" id=""></span>
+
+            <!-- <span col-md-3><input type="text" class="form-control" placeholder="Search here" 
                     name="keyword" [(ngModel)]="filters.keyword" (input)="carList()" id=""></span> -->
-                     <!-- <button class="btn btn-primary  ml-auto" >Cart :{{num}}</button>  -->
-                    <button class="btn btn-primary  ml-auto" (click)="goToCart()">
-                        <i class="fa fa-cart-plus px-2" aria-hidden="true"></i> Cart: {{n}}</button>
-            </div>
-            
+            <!-- <button class="btn btn-primary  ml-auto" >Cart :{{num}}</button>  -->
+            <button class="btn btn-primary  ml-auto" (click)="goToCart()" [disabled]="n==null">
+                <i class="fa fa-cart-plus" aria-hidden="true"></i> Cart: {{n}}</button>
+
+            <button class="btn btn-primary mx-1" title="Clear Cart." (click)="clearCart()"  *ngIf="n!=null"><i class="fa fa-trash"
+                    aria-hidden="true"></i></button>
+        </div>
+
         <!-- </p> -->
     </div>
 
 
     <div class="row mb-2">
-        <div class="col-md-6" *ngFor="let c of cars">
+        <div class="col-md-6" *ngFor="let c of pageOfItems">
             <div class="card flex-md-row mb-4 box-shadow h-md-250">
                 <img class="card-img-right flex-auto d-none d-md-block" data-src="holder.js/200x250?theme=thumb"
-                    alt="Thumbnail [200x250]" style="width: 220px; height: 250px;"
-                    src="../../assets/car1.jpg"
-                   
+                    alt="Thumbnail [200x250]" style="width: 220px; height: 250px;" src="../../assets/car1.jpg"
                     data-holder-rendered="true">
                 <div class="card-body d-flex flex-column align-items-start">
                     <strong class="d-inline-block mb-2 text-primary">Preview</strong>
@@ -41,13 +41,16 @@
                     <p><b>Price: </b><span class="text-success"> {{c.price | currency:'INR'}}</span></p>
                     <h6 href="#"><img src="assets/location_symbol.svg"> {{c.registrationState}}</h6>
                     <button class="btn btn-primary add" (click)="addToCart(c.id)">Add</button>
-                        
-                    
+
+
                 </div>
 
             </div>
         </div>
-
+        
     </div>
-
+    <div class="card-footer pb-2 pt-3" style="text-align: center;">
+    <jw-pagination style="align-items: center;" [items]="cars" (changePage)="pageClick($event)" [pageSize]="pageSize"></jw-pagination>
+        </div>
 </div>
+

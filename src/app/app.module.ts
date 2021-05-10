@@ -30,7 +30,7 @@ import { CarUpdateComponent } from './car-update/car-update.component';
 import { CartDetailComponent } from './cart-detail/cart-detail.component';
 import { AppointmentAdminComponent } from './appointment/appointment.admin.component';
 import { BillDetailsComponent } from './bill-details/bill-details/bill-details.component';
-
+import { JwPaginationModule } from 'jw-angular-pagination';
 
 
 @NgModule({
@@ -56,7 +56,8 @@ import { BillDetailsComponent } from './bill-details/bill-details/bill-details.c
     CarUpdateComponent,
     RegisterComponent,
     CartDetailComponent,
-    BillDetailsComponent
+    BillDetailsComponent,
+
 
 
   ],
@@ -66,6 +67,7 @@ import { BillDetailsComponent } from './bill-details/bill-details/bill-details.c
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
+    JwPaginationModule,
     RouterModule.forRoot([
       {path:'home', component: HomeComponent},
       {path:'appointment', component: AppointmentComponent},
