@@ -1,5 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import Swal from 'sweetalert2';
 import { IAppointment } from "../models/appointment";
 import { AppointmentService } from "../services/appointment.service";
 
@@ -34,6 +35,16 @@ export class AppointmentAdminComponent implements OnInit {
     this.byIDForm = this.formBuilder.group({
       id: ['', Validators.required]
     });
+
+    this.updateForm = this.formBuilder.group({
+      id: ['', Validators.required],
+      custId: ['', Validators.required],
+      location: ['', Validators.required],
+      inspectionType: ['', Validators.required],
+      preferredDate: ['', Validators.required],
+      preferredTime: ['', Validators.required],
+      payId: ['', Validators.required]
+    });
   }
 
   onSubmit(form: FormGroup) {
@@ -63,11 +74,24 @@ export class AppointmentAdminComponent implements OnInit {
     let preferredTime = this.updateForm.controls.preferredTime.value;
     let payId = this.updateForm.controls.payId.value;
 
-    this.appointmentService.updateAppointment(id, location, inspectionType, preferredDate, preferredTime, custId, payId).subscribe((data) => {
-      console.log("Form submitted.");
-      alert(`Appointment Updated successfully.`);
-      this.updateForm.reset();
+    this.appointmentService.updateAppointment(id, location, inspectionType, preferredDate, preferredTime, custId, payId).subscribe({
+      next: data => {
+        console.log("Form submitted.");
+        Swal.fire({
+          position: 'top',
+          icon: 'success',
+          title: 'Appointment Updated successfully',
+          timerProgressBar: true,
+          showConfirmButton: false,
+          timer: 2000,
+          didOpen: () => {
+
+          },
+
+        });
+      }
     });
+    this.updateForm.reset();
 
   }
 
@@ -75,6 +99,18 @@ export class AppointmentAdminComponent implements OnInit {
     this.appointmentService.deleteAppointment(form.value.id).subscribe({
       next: appointment => {
         this.delete = appointment;
+        Swal.fire({
+          position: 'top',
+          icon: 'success',
+          title: 'Appointment Canceled successfully for Appointment Id ' + this.delete.id,
+          timerProgressBar: true,
+          showConfirmButton: false,
+          timer: 2000,
+          didOpen: () => {
+
+          },
+
+        });
 
       }
     });
@@ -94,6 +130,14 @@ export class AppointmentAdminComponent implements OnInit {
 
   }
   click(input: number) {
+
+    if (input === 2 || input === 4) {
+      this.appointmentService.getAllAppointments().subscribe({
+        next: appointments => {
+          this.appointments = appointments;
+        }
+      });
+    }
     this.openForm = input;
   }
 

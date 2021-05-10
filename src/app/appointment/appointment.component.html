@@ -37,6 +37,8 @@
             </div>
         </div>
     </div>
+
+    <!-- Book Appointments Form Start here -->
     <div class="col-7" [ngSwitch]="openForm">
         <div class="card my-5 mr-5 p-3 align-items-left" *ngSwitchCase='1'>
             <div class="card-top my-3 mr-3 text-primary">
@@ -86,6 +88,8 @@
                 </form>
             </div>
         </div>
+
+        <!-- Update Appointments Form Start here -->
         <div class="card my-5 mr-5 p-3 align-items-left" *ngSwitchCase='2'>
             <div class="card-top my-3 mr-3 text-primary">
                 <h4 id="heading">Update Appointment</h4>
@@ -138,7 +142,9 @@
                 </form>
             </div>
         </div>
-        <div class="card my-5 mr-5 p-3 align-items-left" *ngSwitchCase='3'>
+
+        <!-- View Appointments By Id Form Start here -->
+        <div class=" my-5 mr-5 p-3 align-items-left" *ngSwitchCase='3'>
             <div class="card-top my-3 mr-3 text-primary">
                 <h4 id="heading">View Appointments</h4>
             </div>
@@ -147,8 +153,13 @@
 
                     <div>
                         <label for="id" class="mx-2">Appointment ID</label>
-                        <input type="number" formControlName="id" class="form-control mb-1" placeholder="Appointment ID"
-                            required autofocus>
+                        <select class="form-control" formControlName="id">
+
+                            <option [value]="appointment.id" *ngFor="let appointment of appointments">{{appointment.id}}
+                            </option>
+
+
+                        </select>
                     </div>
                     <div class="text-danger"
                         *ngIf="appointmentForm.get('id').invalid && (appointmentForm.get('id').touched)">
@@ -160,7 +171,7 @@
                 </form>
             </div>
             <div class="card-body" *ngIf="(app)">
-                <p class="mb-4 display-4">Appointment data is here</p>
+
                 <table class="table table-bordered">
                     <thead>
                         <tr>
@@ -187,7 +198,9 @@
                 </table>
             </div>
         </div>
-        <div class="card my-5 mr-5 p-3 align-items-left" *ngSwitchCase='4'>
+
+        <!-- Cancel Appointments Form Start here -->
+        <div class="my-5 mr-5 p-3 align-items-left" *ngSwitchCase='4'>
             <div class="card-top my-3 mr-3 text-primary">
                 <h4 id="heading">Cancel Appointments</h4>
             </div>
@@ -196,8 +209,13 @@
 
                     <div>
                         <label for="id" class="mx-2">Appointment ID</label>
-                        <input type="number" formControlName="id" class="form-control mb-1" placeholder="Appointment ID"
-                            required autofocus>
+                        <select class="form-control" formControlName="id">
+
+                            <option [value]="appointment.id" *ngFor="let appointment of appointments">{{appointment.id}}
+                            </option>
+
+
+                        </select>
                     </div>
                     <div class="text-danger" *ngIf="cancelForm.get('id').invalid && (cancelForm.get('id').touched)">
                         Please enter a valid id.
@@ -208,7 +226,7 @@
                 </form>
             </div>
             <div class="card-body" *ngIf="(delete)">
-                <p class="mb-4 display-4">Appointment Canceled Successfully</p>
+
                 <table class="table table-bordered">
                     <thead>
                         <tr>
@@ -223,13 +241,13 @@
                     </thead>
                     <tbody>
                         <tr>
-                            <td>{{appointment.id}}</td>
-                            <td>{{appointment.location}}</td>
-                            <td>{{appointment.inspectionType}}</td>
-                            <td>{{appointment.preferredDate}}</td>
-                            <td>{{appointment.preferredTime}}</td>
-                            <td>{{appointment.customer.userId}}</td>
-                            <td>{{appointment.payment.id}}</td>
+                            <td>{{delete.id}}</td>
+                            <td>{{delete.location}}</td>
+                            <td>{{delete.inspectionType}}</td>
+                            <td>{{delete.preferredDate}}</td>
+                            <td>{{delete.preferredTime}}</td>
+                            <td>{{delete.customer.userId}}</td>
+                            <td>{{delete.payment.id}}</td>
                         </tr>
                     </tbody>
                 </table>
