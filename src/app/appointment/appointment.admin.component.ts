@@ -76,20 +76,20 @@ export class AppointmentAdminComponent implements OnInit {
 
     this.appointmentService.updateAppointment(id, location, inspectionType, preferredDate, preferredTime, custId, payId).subscribe({
       next: data => {
-      console.log("Form submitted.");
-      Swal.fire({
-        position: 'top',
-        icon: 'success',
-        title: 'Appointment Updated successfully',
-        timerProgressBar: true,
-        showConfirmButton: false,
-        timer: 2000,
-        didOpen: () => {
+        console.log("Form submitted.");
+        Swal.fire({
+          position: 'top',
+          icon: 'success',
+          title: 'Appointment Updated successfully',
+          timerProgressBar: true,
+          showConfirmButton: false,
+          timer: 2000,
+          didOpen: () => {
 
-        },
+          },
 
-      });
-    }
+        });
+      }
     });
     this.updateForm.reset();
 

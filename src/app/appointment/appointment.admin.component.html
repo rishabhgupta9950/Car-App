@@ -44,6 +44,8 @@
             </div>
         </div>
     </div>
+
+    <!-- All Appointments Form Start here -->
     <div class="col-7" [ngSwitch]="openForm">
         <div class="my-5 mr-5 p-3 align-items-left" *ngSwitchCase='1'>
             <div class="card-top my-3 mr-3 text-primary">
@@ -82,6 +84,8 @@
                 </table>
             </div>
         </div>
+
+        <!-- View Appointments By Id Form Start here -->
         <div class="my-5 mr-5 p-3 align-items-left" *ngSwitchCase='2'>
             <div class="card-top my-3 mr-3 text-primary">
                 <h4 id="heading">View Appointment By ID</h4>
@@ -136,6 +140,8 @@
                 </table>
             </div>
         </div>
+
+        <!-- Update Appointments Form Start here -->
         <div class="card my-5 mr-5 p-3 align-items-left" *ngSwitchCase='3'>
             <div class="card-top my-3 mr-3 text-primary">
                 <h4 id="heading">Update Appointment</h4>
@@ -188,6 +194,8 @@
                 </form>
             </div>
         </div>
+
+        <!-- Cancel Appointments Form Start here -->
         <div class="my-5 mr-5 p-3 align-items-left" *ngSwitchCase='4'>
             <div class="card-top my-3 mr-3 text-primary">
                 <h4 id="heading">Cancel Appointments</h4>
@@ -214,7 +222,7 @@
                 </form>
             </div>
             <div class="card-body" *ngIf="(delete)">
-                
+
                 <table class="table table-bordered">
                     <thead>
                         <tr>
@@ -241,6 +249,8 @@
                 </table>
             </div>
         </div>
+
+        <!-- Home Appointments Form Start here -->
         <div class="my-5 mr-5 p-3 align-items-left" *ngSwitchCase='5'>
             <div class="card-top my-3 mr-3 text-primary">
                 <h4 id="heading">Home Appointments</h4>

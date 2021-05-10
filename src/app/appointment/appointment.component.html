@@ -37,6 +37,8 @@
             </div>
         </div>
     </div>
+
+    <!-- Book Appointments Form Start here -->
     <div class="col-7" [ngSwitch]="openForm">
         <div class="card my-5 mr-5 p-3 align-items-left" *ngSwitchCase='1'>
             <div class="card-top my-3 mr-3 text-primary">
@@ -86,6 +88,8 @@
                 </form>
             </div>
         </div>
+
+        <!-- Update Appointments Form Start here -->
         <div class="card my-5 mr-5 p-3 align-items-left" *ngSwitchCase='2'>
             <div class="card-top my-3 mr-3 text-primary">
                 <h4 id="heading">Update Appointment</h4>
@@ -138,6 +142,8 @@
                 </form>
             </div>
         </div>
+
+        <!-- View Appointments By Id Form Start here -->
         <div class=" my-5 mr-5 p-3 align-items-left" *ngSwitchCase='3'>
             <div class="card-top my-3 mr-3 text-primary">
                 <h4 id="heading">View Appointments</h4>
@@ -192,6 +198,8 @@
                 </table>
             </div>
         </div>
+
+        <!-- Cancel Appointments Form Start here -->
         <div class="my-5 mr-5 p-3 align-items-left" *ngSwitchCase='4'>
             <div class="card-top my-3 mr-3 text-primary">
                 <h4 id="heading">Cancel Appointments</h4>
