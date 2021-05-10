@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { ICard } from '../models/card';
 import { IPayment } from '../models/payment';
 import { PaymentService } from '../services/payment.service';
@@ -13,8 +14,9 @@ export class PaymentComponent implements OnInit {
 
   paymentForm: FormGroup;
   payment: IPayment=new IPayment();
+  orderId: number;
 
-  constructor(private formBuilder: FormBuilder, private paymentService: PaymentService) {
+  constructor(private formBuilder: FormBuilder, private paymentService: PaymentService, private router: Router) {
     this.paymentForm=this.formBuilder.group({
       name: ['', Validators.required],
       number: ['', [Validators.required, Validators.maxLength(16), Validators.minLength(16)]],
@@ -37,17 +39,17 @@ export class PaymentComponent implements OnInit {
     this.payment.status="Successful";
     this.payment.type="Debit Card";
     console.log(this.payment);
-    this.paymentService.addPAyment(this.payment).subscribe(data =>{
-      console.log("Data Inserted")
-    },
-    error=>{
-      console.log(error);
-    }
-    );
+    this.paymentService.addPAyment(this.payment).subscribe({
+      next: data =>{
+        console.log('Payment Successful', data);
+        this.router.navigateByUrl('/bill-details', {state: {id: this.orderId}});
+      }
+    });
     this.paymentForm.reset();
   }
 
   ngOnInit(): void {
+    this.orderId=JSON.parse(localStorage.getItem('orderId'));
   }
 
 }
