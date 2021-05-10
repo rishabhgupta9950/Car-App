@@ -44,6 +44,8 @@
             </div>
         </div>
     </div>
+
+    <!-- All Appointments Form Start here -->
     <div class="col-7" [ngSwitch]="openForm">
         <div class="my-5 mr-5 p-3 align-items-left" *ngSwitchCase='1'>
             <div class="card-top my-3 mr-3 text-primary">
@@ -55,7 +57,7 @@
                 </form>
             </div>
             <div *ngIf="(appointments.length)">
-                <p class="mb-4 display-4">Appointment details</p>
+
                 <table class="table table-bordered">
                     <thead>
                         <tr>
@@ -82,6 +84,8 @@
                 </table>
             </div>
         </div>
+
+        <!-- View Appointments By Id Form Start here -->
         <div class="my-5 mr-5 p-3 align-items-left" *ngSwitchCase='2'>
             <div class="card-top my-3 mr-3 text-primary">
                 <h4 id="heading">View Appointment By ID</h4>
@@ -91,8 +95,13 @@
 
                     <div>
                         <label for="id" class="mx-2">Appointment ID</label>
-                        <input type="number" formControlName="id" class="form-control mb-1" placeholder="Appointment ID"
-                            required autofocus>
+                        <select class="form-control" formControlName="id">
+
+                            <option [value]="appointment.id" *ngFor="let appointment of appointments">{{appointment.id}}
+                            </option>
+
+
+                        </select>
                     </div>
                     <div class="text-danger" *ngIf="byIDForm.get('id').invalid && (byIDForm.get('id').touched)">
                         Please enter a valid id.
@@ -104,7 +113,7 @@
                 </form>
             </div>
             <div class="card-body" *ngIf="(app)">
-                <p class="mb-4 display-4">Appointment data is here</p>
+
                 <table class="table table-bordered">
                     <thead>
                         <tr>
@@ -131,17 +140,24 @@
                 </table>
             </div>
         </div>
+
+        <!-- Update Appointments Form Start here -->
         <div class="card my-5 mr-5 p-3 align-items-left" *ngSwitchCase='3'>
             <div class="card-top my-3 mr-3 text-primary">
                 <h4 id="heading">Update Appointment</h4>
             </div>
             <div class="card-body">
                 <form [formGroup]="updateForm" (ngSubmit)="onUpdate(updateForm)">
+                    <div>
+                        <label for="id" class="mx-2">Appointment ID</label>
+                        <input type="number" formControlName="id" class="form-control mb-1" placeholder="Appointment ID"
+                            required autofocus>
+                    </div>
 
                     <div>
                         <label for="custId" class="mx-2">Customer ID</label>
-                        <input type="text" formControlName="custId" class="form-control mb-1" placeholder="Customer ID"
-                            required autofocus>
+                        <input type="number" formControlName="custId" class="form-control mb-1"
+                            placeholder="Customer ID" required autofocus>
                     </div>
                     <div>
                         <label for="location" class="mx-2">Location</label>
@@ -169,7 +185,7 @@
                     </div>
                     <div>
                         <label for="payId" class="mx-2">Payment ID</label>
-                        <input type="text" formControlName="payId" class="form-control mb-1" placeholder="Payment ID"
+                        <input type="number" formControlName="payId" class="form-control mb-1" placeholder="Payment ID"
                             required>
                     </div>
                     <button class="btn btn-lg btn-primary btn-block mb-2 my-2" type="submit"
@@ -178,6 +194,8 @@
                 </form>
             </div>
         </div>
+
+        <!-- Cancel Appointments Form Start here -->
         <div class="my-5 mr-5 p-3 align-items-left" *ngSwitchCase='4'>
             <div class="card-top my-3 mr-3 text-primary">
                 <h4 id="heading">Cancel Appointments</h4>
@@ -187,8 +205,13 @@
 
                     <div>
                         <label for="id" class="mx-2">Appointment ID</label>
-                        <input type="number" formControlName="id" class="form-control mb-1" placeholder="Appointment ID"
-                            required autofocus>
+                        <select class="form-control" formControlName="id">
+
+                            <option [value]="appointment.id" *ngFor="let appointment of appointments">{{appointment.id}}
+                            </option>
+
+
+                        </select>
                     </div>
                     <div class="text-danger" *ngIf="cancelForm.get('id').invalid && (cancelForm.get('id').touched)">
                         Please enter a valid id.
@@ -199,7 +222,7 @@
                 </form>
             </div>
             <div class="card-body" *ngIf="(delete)">
-                <p class="mb-4 display-4">Appointment Canceled Successfully</p>
+
                 <table class="table table-bordered">
                     <thead>
                         <tr>
@@ -226,6 +249,8 @@
                 </table>
             </div>
         </div>
+
+        <!-- Home Appointments Form Start here -->
         <div class="my-5 mr-5 p-3 align-items-left" *ngSwitchCase='5'>
             <div class="card-top my-3 mr-3 text-primary">
                 <h4 id="heading">Home Appointments</h4>
@@ -236,7 +261,7 @@
                 </form>
             </div>
             <div *ngIf="(appointments.length)">
-                <p class="mb-4 display-4">Appointment details</p>
+
                 <table class="table table-bordered">
                     <thead>
                         <tr>
