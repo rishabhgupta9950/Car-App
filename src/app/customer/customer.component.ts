@@ -52,6 +52,10 @@ export class CustomerComponent implements OnInit {
   customers: ICustomer[]=[];
   update: ICustomer=new ICustomer();
   click(name: number){
+
+    if (name === 2 || name === 4) {
+      this.allCustomer();
+    }
     this.openForm = name;
   }
 
@@ -105,7 +109,7 @@ export class CustomerComponent implements OnInit {
     this.openForm=4;
   }
 
-  allCustomer(form: FormGroup){
+  allCustomer(){
     this.sub=this.customerService.getAllCustomers().subscribe({
       next: customers =>{
         this.customers=customers;
