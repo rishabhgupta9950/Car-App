@@ -1,8 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { IAppointment } from '../models/appointment';
-import { ICustomer } from '../models/customer';
-import { IPayment } from '../models/payment';
 import { AppointmentService } from '../services/appointment.service';
 import { CustomerService } from '../services/customer.service';
 import { PaymentService } from '../services/payment.service';
@@ -22,6 +20,7 @@ export class AppointmentComponent implements OnInit {
   delete: IAppointment;
   app: IAppointment;
   appointment: IAppointment = new IAppointment();
+  appointments: IAppointment[] = [];
 
   constructor(private appointmentService: AppointmentService, private paymentService: PaymentService, private customerService: CustomerService, private formBuilder: FormBuilder) {
 
@@ -117,6 +116,14 @@ export class AppointmentComponent implements OnInit {
   }
 
   click(input: number) {
+
+    if (input === 3 || input === 4) {
+      this.appointmentService.getAllAppointments().subscribe({
+        next: appointments => {
+          this.appointments = appointments;
+        }
+      });
+    }
     this.openForm = input;
   }
 

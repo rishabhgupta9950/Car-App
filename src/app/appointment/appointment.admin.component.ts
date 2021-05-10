@@ -34,6 +34,16 @@ export class AppointmentAdminComponent implements OnInit {
     this.byIDForm = this.formBuilder.group({
       id: ['', Validators.required]
     });
+
+    this.updateForm = this.formBuilder.group({
+      id: ['', Validators.required],
+      custId: ['', Validators.required],
+      location: ['', Validators.required],
+      inspectionType: ['', Validators.required],
+      preferredDate: ['', Validators.required],
+      preferredTime: ['', Validators.required],
+      payId: ['', Validators.required]
+    });
   }
 
   onSubmit(form: FormGroup) {
@@ -94,6 +104,14 @@ export class AppointmentAdminComponent implements OnInit {
 
   }
   click(input: number) {
+
+    if (input === 2 || input === 4) {
+      this.appointmentService.getAllAppointments().subscribe({
+        next: appointments => {
+          this.appointments = appointments;
+        }
+      });
+    }
     this.openForm = input;
   }
 
