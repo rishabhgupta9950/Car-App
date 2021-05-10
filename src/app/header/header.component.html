@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark" *ngIf="!adminId && !userId">
   <div class="container-fluid">
     <a class="navbar-brand" routerLink='/home'>Car Application</a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
@@ -11,34 +11,16 @@
           <a class="nav-link active" aria-current="page" routerLink='/home'>Home</a>
         </li>
 
-        <!-- <li class="nav-item">
-          <a class="nav-link" routerLink='/products1'>Products</a>
-        </li> -->
-        <!-- <li class="nav-item">
-          <a class="nav-link" routerLink='/carRegister'>Add Car</a>
-        </li> -->
-
-
         <li class="nav-item">
           <a class="nav-link" routerLink='/appointment'>Appointment</a>
         </li>
-        
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown"
-            aria-expanded="false">
-            Products
-          </a>
-          <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <li><a class="dropdown-item" routerLink='/products'>All Products</a></li>
-            <li><a class="dropdown-item" routerLink='/order'>Manage Order</a></li>
 
-            <li><a class="dropdown-item" routerLink='/carUpdate'>Update</a></li>
-          </ul>
+        <li class="nav-item">
+          <a class="nav-link" routerLink='/products'>Products</a>
         </li>
       </ul>
       <ul class="navbar-nav ml-auto">
         <form class="d-flex">
-
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown"
               aria-expanded="false">
@@ -49,14 +31,69 @@
               <li><a routerLink='/login' class="dropdown-item" href="#">Customer</a></li>
             </ul>
           </li>
-
           <li><a routerLink='/register' class="btn btn-outline-success mx-2">Register</a></li>
-
-
-
         </form>
       </ul>
+    </div>
+  </div>
+</nav>
 
+<!-- Admin Header start here -->
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark" *ngIf="adminId && !userId">
+  <div class="container-fluid">
+    <a class="navbar-brand" routerLink='/home'>Car Application</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" routerLink='/admin-dashboard'>Dashboard</a>
+        </li>
+      </ul>
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" routerLink='/admin-dashboard'>
+            <i class="fa fa-user-circle" aria-hidden="true"></i> User Id: {{adminId}}</a>
+        </li>
+        <li><a (click)="logout()" class="btn btn-outline-success mx-2">Logout</a></li>       
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<!-- Customer Header starts here -->
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark" *ngIf="!adminId && userId">
+  <div class="container-fluid">
+    <a class="navbar-brand" routerLink='/home'>Car Application</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" routerLink='/home'>Home</a>
+        </li>
+        
+        <li class="nav-item">
+          <a class="nav-link" routerLink='/appointment'>Appointment</a>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link" routerLink='/products'>Products</a>
+        </li>
+      </ul>
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" routerLink='/products'>
+            <i class="fa fa-user-circle" aria-hidden="true"></i> {{customerName}}</a>
+        </li>
+        <li><a (click)="logout()" class="btn btn-outline-success mx-2">Logout</a></li>       
+      </ul>
     </div>
   </div>
 </nav>

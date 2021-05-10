@@ -23,6 +23,8 @@ export class CarDataComponent implements OnInit {
   }
 
   n:number;
+  pageOfItems:Array<ICar>;
+  pageSize: number = 6;
 
   //   {
   //     "id": 190,
@@ -78,6 +80,12 @@ export class CarDataComponent implements OnInit {
   // ]
 
   ngOnInit(): void {
+    if (!localStorage.getItem('foo')) { 
+      localStorage.setItem('foo', 'no reload') 
+      location.reload() 
+    } else {
+      localStorage.removeItem('foo') 
+    }
     this.carServive.getAllCars().subscribe(data=>this.cars=data);
     this.num=JSON.parse(localStorage.getItem('len'));
     // console.log(this.num);
@@ -114,9 +122,25 @@ addToCart(id:number){
   this.router.routeReuseStrategy.shouldReuseRoute=()=>false;
   this.router.onSameUrlNavigation='reload';
   this.router.navigate(['/products']);
+  
 }
 
 goToCart(){
   this.router.navigate(['/order-details']);
 }
+
+clearCart()
+{
+  // localStorage.clear();
+  localStorage.removeItem('len');
+  localStorage.removeItem('user')
+  this.router.routeReuseStrategy.shouldReuseRoute=()=>false;
+  this.router.onSameUrlNavigation='reload';
+  this.router.navigate(['/products']);
+}
+
+pageClick(pageOfItems:Array<ICar>){
+  this.pageOfItems = pageOfItems;
+}
+
 }
