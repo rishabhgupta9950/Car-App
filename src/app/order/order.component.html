@@ -171,6 +171,7 @@
           <div class="form-group">
             <label for="id" class="mx-2">Order ID</label>
             <select class="form-control" formControlName="id">
+              <option value="">Select Order ID</option>
               <option [value]="order.id" *ngFor="let order of orders">{{order.id}}</option>
             </select>
           </div>
@@ -398,6 +399,7 @@
       <div class="form-group">
         <label for="id" class="mx-2">Order ID</label>
         <select class="form-control" formControlName="id">
+          <option value="">Select Order ID</option>
           <option [value]="order.id" *ngFor="let order of orders">{{order.id}}</option>
         </select>
       </div>

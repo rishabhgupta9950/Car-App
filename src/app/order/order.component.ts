@@ -26,15 +26,15 @@ export class OrderComponent implements OnInit {
     this.allOrderForm = this.formBuilder.group({});
 
     this.byIdForm = this.formBuilder.group({
-      id: ['', [Validators.required, Validators.maxLength(5), Validators.min(1), Validators.max(99999)]],
+      id: ['', Validators.required],
     });
 
     this.billForm = this.formBuilder.group({
-      id: ['', [Validators.required, Validators.maxLength(5), Validators.min(1), Validators.max(99999)]],
+      id: ['', Validators.required],
     });
 
     this.byDateForm = this.formBuilder.group({
-      billingDate: ['', [Validators.required]],
+      billingDate: ['', Validators.required],
     });
   }
 
