@@ -4,6 +4,8 @@ import { Subscription } from 'rxjs';
 import { ICustomer } from '../models/customer';
 import { IAddress } from '../models/address';
 import { CustomerService } from '../services/customer.service';
+import Swal from 'sweetalert2';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-customer',
@@ -18,7 +20,7 @@ export class CustomerComponent implements OnInit {
   removeForm: FormGroup;
   updateForm: FormGroup;
 
-  constructor(private customerService: CustomerService, private formBuilder: FormBuilder) {
+  constructor(private customerService: CustomerService, private formBuilder: FormBuilder, private router: Router) {
     this.getByIdForm=this.formBuilder.group({
       userId: ['', Validators.required]
     });
@@ -120,6 +122,15 @@ export class CustomerComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    const adminId = JSON.parse(localStorage.getItem('adminId'))
+    if (!adminId) {
+      Swal.fire({
+        icon: 'error',
+        title: 'Access Denied',
+        text: 'Please Login as Admin to view this page'
+      });
+      this.router.navigate(['/admin']);
+    }
   }
 
 }

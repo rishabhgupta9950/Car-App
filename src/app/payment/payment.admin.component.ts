@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import Swal from 'sweetalert2';
 import { ICard } from '../models/card';
@@ -19,7 +20,7 @@ export class PaymentAdminComponent implements OnInit {
   delForm: FormGroup;
   updateForm: FormGroup;
 
-  constructor(private paymentService: PaymentService, private formBuilder: FormBuilder) {
+  constructor(private paymentService: PaymentService, private formBuilder: FormBuilder, private router: Router) {
     this.getByIdForm = this.formBuilder.group({
       paymentId: ['', Validators.required]
     });
@@ -135,6 +136,15 @@ export class PaymentAdminComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    const adminId = JSON.parse(localStorage.getItem('adminId'))
+    if (!adminId) {
+      Swal.fire({
+        icon: 'error',
+        title: 'Access Denied',
+        text: 'Please Login as Admin to view this page'
+      });
+      this.router.navigate(['/admin']);
+    }
   }
 
 }
