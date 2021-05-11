@@ -260,7 +260,7 @@
                     <button class="btn btn-lg btn-primary btn-block mb-2 my-2">View Home Appointments</button>
                 </form>
             </div>
-            <div *ngIf="(appointments.length)">
+            <div *ngIf="(openappointments.length)">
 
                 <table class="table table-bordered">
                     <thead>
@@ -275,7 +275,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr *ngFor="let appointment of appointments">
+                        <tr *ngFor="let appointment of openappointments">
                             <td>{{appointment.id}}</td>
                             <td>{{appointment.location}}</td>
                             <td>{{appointment.inspectionType}}</td>

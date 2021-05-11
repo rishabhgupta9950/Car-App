@@ -21,6 +21,7 @@ export class AppointmentAdminComponent implements OnInit {
   app: IAppointment;
   appointment: IAppointment = new IAppointment();
   appointments: IAppointment[] = [];
+  openappointments: IAppointment[] = [];
 
 
   constructor(private appointmentService: AppointmentService, private formBuilder: FormBuilder, private router: Router) {
@@ -121,8 +122,8 @@ export class AppointmentAdminComponent implements OnInit {
 
   viewOpen(form: FormGroup) {
     this.appointmentService.getOpenAppointments().subscribe({
-      next: appointments => {
-        this.appointments = appointments;
+      next: openappointments => {
+        this.openappointments = openappointments;
       }
     });
   }

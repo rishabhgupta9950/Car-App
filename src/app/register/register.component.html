@@ -35,7 +35,7 @@
 
                     <div class="form-group">
                         <label for="Brand"><span class="req">* </span> Email: </label>
-                        <input type="text" formControlName="email" id="brand" required class="form-control "
+                        <input type="email" formControlName="email" id="brand" required class="form-control "
                             maxlength="28" placeholder="Enter email id" />
 
                         <div *ngIf="submitted && addForm.controls.email.errors">
@@ -180,7 +180,7 @@
                     </div>
 
                     <!-- <button type="submit" [disabled]="!profileForm.valid">Submit</button> -->
-                    <button class="btn btn-lg btn-primary btn-block mb-2" type="submit">Register</button>
+                    <button class="btn btn-lg btn-primary btn-block mb-2" [disabled]="addForm.invalid" type="submit">Register</button>
 
                 </fieldset>
             </form>
