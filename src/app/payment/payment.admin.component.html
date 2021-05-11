@@ -31,7 +31,7 @@
                     <h4 id="heading">All Paymnet Details</h4>
                 </div>
                 <div class="card-body">
-                    <form [formGroup]="getAllForm" (ngSubmit)="allPayment(getAllForm)">
+                    <form [formGroup]="getAllForm" (ngSubmit)="allPayment()">
                         <div class="form-group">
                             <button class="btn btn-primary mt-4">Get Payment Details</button>
                         </div>
@@ -76,8 +76,10 @@
                     <form [formGroup]="getByIdForm" (ngSubmit)="paymentById(getByIdForm)">
                         <div class="form-group">
                             <label for="paymentId" class="mx-2">Payment ID</label>
-                            <input type="number" formControlName="paymentId" id="paymentId" class="form-control"
-                                placeholder="Enter Payment ID" required />
+                            <select class="form-control" formControlName="paymentId">
+                                <option value="" disabled>Select Payment ID</option>
+                                <option [value]="payment.id" *ngFor="let payment of allPayments">{{payment.id}}</option>
+                              </select>
                         </div>
                         <div class="form-group">
                             <button class="btn btn-primary mt-3 shadow float-right" [disabled]="getByIdForm.invalid"
@@ -125,18 +127,25 @@
                     <form [formGroup]="updateForm" (ngSubmit)="updatePayment(updateForm)">
                         <div class="form-group">
                             <label for="paymentId" class="mx-2">Payment ID</label>
-                            <input type="number" id="paymentId" formControlName="paymentId" class="form-control"
-                                placeholder="Enter Payment ID" required />
+                            <select class="form-control" formControlName="paymentId">
+                                <option value="">Select Payment ID</option>
+                                <option [value]="payment.id" *ngFor="let payment of allPayments">{{payment.id}}</option>
+                              </select>
                         </div>
                         <div class="form-group">
                             <label for="status" class="mx-2">Payment Status</label>
-                            <input type="text" id="status" formControlName="status" class="form-control"
-                                placeholder="Status" required />
+                            <select class="form-control" formControlName="status">
+                                <option value="Successful">Successful</option>
+                                <option value="Pending">Pending</option>
+                                <option value="Failed">Failed</option>
+                              </select>
                         </div>
                         <div class="form-group">
                             <label for="type" class="mx-2">Payment Type</label>
-                            <input type="text" id="type" formControlName="type" class="form-control"
-                                placeholder="Payment Type (Debit/Credit)" required />
+                            <select class="form-control" formControlName="type">
+                                <option value="Debit Card">Debit card</option>
+                                <option value="Credit Card">Credit Card</option>
+                              </select>
                         </div>
                         <div class="form-group">
                             <label for="name" class="mx-2">Card Holder Name</label>
@@ -149,9 +158,34 @@
                                 placeholder="1641 8823 1156 8909" required />
                         </div>
                         <div class="form-group">
-                            <label for="expiry" class="mx-2">Expiry Date</label>
-                            <input type="text" id="expiry" formControlName="expiry" class="form-control"
-                                placeholder="MM/YY" required />
+                            <div><label for="expiry" class="mx-2">Expiry Date</label></div>
+                            <select formControlName="month" class="col-6">
+                                <!-- <option value="" disabled selected>Month</option> -->
+                                <option value="01">01</option>
+                                <option value="02">02</option>
+                                <option value="03">03</option>
+                                <option value="04">04</option>
+                                <option value="05">05</option>
+                                <option value="06">06</option>
+                                <option value="07">07</option>
+                                <option value="08">08</option>
+                                <option value="09">09</option>
+                                <option value="10">10</option>
+                                <option value="11">11</option>
+                                <option value="12">12</option>
+                            </select>
+                            <select formControlName="year" class="col-6">
+                                <option value="2021">2021</option>
+                                <option value="2022">2022</option>
+                                <option value="2023">2023</option>
+                                <option value="2024">2024</option>
+                                <option value="2025">2025</option>
+                                <option value="2026">2026</option>
+                                <option value="2027">2027</option>
+                                <option value="2028">2028</option>
+                                <option value="2029">2029</option>
+                                <option value="2030">2030</option>
+                            </select>
                         </div>
                         <div class="form-group">
                             <label for="cvv" class="mx-2">CVV</label>
@@ -160,7 +194,7 @@
                         </div>
                         <div class="form-group">
                             <button class="btn btn-primary mt-3 shadow float-right" [disabled]="updateForm.invalid"
-                                type="submit">Place Order</button>
+                                type="submit">Update Payment</button>
                         </div>
                     </form>
                 </div>
@@ -176,8 +210,10 @@
                     <form [formGroup]="delForm" (ngSubmit)="delById(delForm)">
                         <div class="form-group">
                             <label for="orderId" class="mx-2">Payment ID</label>
-                            <input type="number" formControlName="paymentId" class="form-control"
-                                placeholder="Enter Payment ID" required />
+                            <select class="form-control" formControlName="paymentId">
+                                <option value="" disabled>Select Payment ID</option>
+                                <option [value]="payment.id" *ngFor="let payment of allPayments">{{payment.id}}</option>
+                              </select>
                         </div>
                         <div class="form-group">
                             <button class="btn btn-primary mt-3 shadow float-right" [disabled]="delForm.invalid"

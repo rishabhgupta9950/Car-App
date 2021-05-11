@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import Swal from 'sweetalert2';
 import { ICard } from '../models/card';
@@ -19,7 +20,7 @@ export class PaymentAdminComponent implements OnInit {
   delForm: FormGroup;
   updateForm: FormGroup;
 
-  constructor(private paymentService: PaymentService, private formBuilder: FormBuilder) {
+  constructor(private paymentService: PaymentService, private formBuilder: FormBuilder, private router: Router) {
     this.getByIdForm = this.formBuilder.group({
       paymentId: ['', Validators.required]
     });
@@ -37,18 +38,31 @@ export class PaymentAdminComponent implements OnInit {
       status: ['', Validators.required],
       type: ['', Validators.required],
       name: ['', Validators.required],
-      number: ['', Validators.required],
-      expiry: ['', Validators.required],
-      cvv: ['', Validators.required]
+      number: ['', [Validators.required, Validators.maxLength(16), Validators.minLength(16)]],
+      month: ['', Validators.required],
+      year: ['', Validators.required],
+      cvv: ['', [Validators.required, Validators.maxLength(3), Validators.minLength(3)]]
     })
   }
   sub!: Subscription;
   payment: IPayment;
   payments: IPayment[] = [];
+  allPayments: IPayment[]=[];
   delete: IPayment;
   update: IPayment = new IPayment();
   click(name: number) {
-    this.openForm = name;
+    if (name === 2 || name===3 || name === 4) {
+      this.sub = this.paymentService.getAllPayment().subscribe({
+        next: payments => {
+          this.allPayments = payments;
+        }
+      });
+      this.openForm = name;
+    }
+    else{
+      this.openForm = name;
+    }
+    
   }
 
   paymentById(form: FormGroup) {
@@ -76,10 +90,24 @@ export class PaymentAdminComponent implements OnInit {
     this.update.card = new ICard();
     this.update.card.name = form.get('name').value;
     this.update.card.number = form.get('number').value;
-    this.update.card.expiry = form.get('expiry').value;
+    this.update.card.expiry = `${form.get('year').value}-${form.get('month').value}-01`
     this.update.card.cvv = form.get('cvv').value;
     this.sub = this.paymentService.updatePayment(this.update).subscribe(data => {
-      console.log("Data Updated")
+      console.log("Data Updated");
+      Swal.fire({
+        position: 'top',
+        icon: 'success',
+        title: 'Payment Updated',
+        timerProgressBar: true,
+        showConfirmButton: false,
+        timer: 1500,
+        didOpen: () => {
+          
+        },
+        willClose: () => {
+        }
+      });
+      form.reset();
     },
       error => {
         console.log(error);
@@ -97,7 +125,7 @@ export class PaymentAdminComponent implements OnInit {
     this.openForm = 4;
   }
 
-  allPayment(form: FormGroup) {
+  allPayment() {
     this.sub = this.paymentService.getAllPayment().subscribe({
       next: payments => {
         this.payments = payments;
@@ -108,6 +136,15 @@ export class PaymentAdminComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    const adminId = JSON.parse(localStorage.getItem('adminId'))
+    if (!adminId) {
+      Swal.fire({
+        icon: 'error',
+        title: 'Access Denied',
+        text: 'Please Login as Admin to view this page'
+      });
+      this.router.navigate(['/admin']);
+    }
   }
 
 }
