@@ -1,5 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import { Router } from "@angular/router";
+import Swal from "sweetalert2";
 
 @Component({
   selector: 'app-admin',
@@ -12,11 +13,22 @@ export class AdminDashboardComponent implements OnInit {
 
   userId = JSON.parse(localStorage.getItem("adminId"));
   ngOnInit(): void {
-    if (!localStorage.getItem('foo')) { 
-      localStorage.setItem('foo', 'no reload') 
-      location.reload() 
-    } else {
-      localStorage.removeItem('foo') 
+    const adminId = JSON.parse(localStorage.getItem('adminId'))
+    if (!adminId) {
+      Swal.fire({
+        icon: 'error',
+        title: 'Access Denied',
+        text: 'Please Login as Admin to view this page'
+      });
+      this.router.navigate(['/admin']);
+    }
+    else{
+      if (!localStorage.getItem('foo')) { 
+        localStorage.setItem('foo', 'no reload') 
+        location.reload() 
+      } else {
+        localStorage.removeItem('foo') 
+      }
     }
     
   }

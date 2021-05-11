@@ -1,5 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from "@angular/router";
 import Swal from 'sweetalert2';
 import { IAppointment } from "../models/appointment";
 import { AppointmentService } from "../services/appointment.service";
@@ -23,7 +24,7 @@ export class AppointmentAdminComponent implements OnInit {
   openappointments: IAppointment[] = [];
 
 
-  constructor(private appointmentService: AppointmentService, private formBuilder: FormBuilder) {
+  constructor(private appointmentService: AppointmentService, private formBuilder: FormBuilder, private router: Router) {
 
     this.allAppointmentForm = this.formBuilder.group({});
 
@@ -128,6 +129,15 @@ export class AppointmentAdminComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    const adminId = JSON.parse(localStorage.getItem('adminId'))
+    if (!adminId) {
+      Swal.fire({
+        icon: 'error',
+        title: 'Access Denied',
+        text: 'Please Login as Admin to view this page'
+      });
+      this.router.navigate(['/admin']);
+    }
 
   }
   click(input: number) {

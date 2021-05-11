@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Observable, Subscription } from 'rxjs';
+import Swal from 'sweetalert2';
 import { ICar } from '../models/car';
 import { CarRegisterService } from '../services/car-register.service';
 
@@ -58,6 +59,15 @@ export class CarUpdateComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    const adminId = JSON.parse(localStorage.getItem('adminId'))
+    if (!adminId) {
+      Swal.fire({
+        icon: 'error',
+        title: 'Access Denied',
+        text: 'Please Login as Admin to view this page'
+      });
+      this.router.navigate(['/admin']);
+    }
   }
 
   click(num: number) {
