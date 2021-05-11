@@ -30,7 +30,7 @@
                 <h4 id="heading">All Customer Details</h4>
             </div>
             <div class="card-body">
-                <form [formGroup]="getAllForm" (ngSubmit)="allCustomer(getAllForm)">
+                <form [formGroup]="getAllForm" (ngSubmit)="allCustomer()">
                     <div class="form-group">
                         <button class="btn btn-primary mt-4">Get Customer Details</button>
                     </div>
@@ -86,8 +86,10 @@
                     <form [formGroup]="getByIdForm" (ngSubmit)="customerById(getByIdForm)">
                         <div class="form-group">
                             <label for="userId" class="mx-2">User ID</label>
-                            <input type="number" formControlName="userId" id="userId" class="form-control"
-                                placeholder="Enter User ID" required />
+                            <select class="form-control" formControlName="userId">
+                                <option value="">Select UserId</option>
+                                <option [value]="customer.userId" *ngFor="let customer of customers">{{customer.userId}}</option>
+                              </select>
                         </div>
                         <div class="form-group">
                             <button class="btn btn-primary mt-3 shadow float-right" [disabled]="getByIdForm.invalid"
